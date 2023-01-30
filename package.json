@@ -1,0 +1,42 @@
+{
+  "name": "adaptive-games",
+  "version": "1.0.0",
+  "description": "A collection of apps designed for eye gaze/switch access",
+  "scripts": {
+    "preinstall": "npx -y only-allow pnpm",
+    "prepare": "husky install",
+    "clean": "rm -rf node_modules",
+    "format": "prettier --write **/*.{ts,tsx,md,js,mjs,cjs,json}",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "pnpm": ">=7.0.0",
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm"
+  },
+  "engineStrict": true,
+  "packageManager": "pnpm@7.24.3",
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "commitlint-config-monorepo": "^2.0.2",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3",
+    "turbo": "^1.7.0",
+    "typescript": "^4.9.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,md,js,mjs,cjs,json}": [
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix"
+    ]
+  }
+}
