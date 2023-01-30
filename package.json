@@ -7,7 +7,9 @@
     "prepare": "husky install",
     "clean": "rm -rf node_modules",
     "format": "prettier --write **/*.{ts,tsx,md,js,mjs,cjs,json}",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "db:generate": "turbo db:generate",
+    "db:push": "turbo db:push"
   },
   "engines": {
     "node": ">=14.0.0",
