@@ -34,7 +34,7 @@ importers:
     specifiers:
       '@ag/api': workspace:*
       '@ag/auth': workspace:*
-      '@ag/db': workspace:^1.0.0
+      '@ag/db': workspace:*
       '@ag/ui': workspace:*
       '@next/font': 13.1.6
       '@tanstack/react-query': ^4.23.0
@@ -51,8 +51,10 @@ importers:
       eslint-config-next: 13.1.6
       next: ^13.1.5
       next-auth: ^4.19.0
+      next-themes: ^0.2.1
       react: ^18.2.0
       react-bootstrap: ^2.7.0
+      react-bootstrap-icons: ^1.10.2
       react-dom: ^18.2.0
       typescript: ^4.9.4
     dependencies:
@@ -73,6 +75,7 @@ importers:
       eslint-config-next: 13.1.6_zkdaqh7it7uc4cvz2haft7rc6u
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.19.0_3vryta7zmbcsw4rrqf4axjqggm
+      next-themes: 0.2.1_3vryta7zmbcsw4rrqf4axjqggm
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       typescript: 4.9.4
@@ -80,6 +83,7 @@ importers:
       bootstrap: 5.3.0-alpha1
       dotenv-cli: 7.0.0
       react-bootstrap: 2.7.0_5ndqzdd6t4rivxsukjv3i3ak2q
+      react-bootstrap-icons: 1.10.2_react@18.2.0
 
   packages/api:
     specifiers:
@@ -153,6 +157,7 @@ importers:
       '@types/react-dom': ^18.0.10
       babel-loader: ^8.3.0
       bootstrap: 5.3.0-alpha1
+      cross-env: ^7.0.3
       next: ^13.1.5
       react: ^18.2.0
       react-bootstrap: ^2.7.0
@@ -184,6 +189,7 @@ importers:
       '@types/react-dom': 18.0.10
       babel-loader: 8.3.0_@babel+core@7.20.12
       bootstrap: 5.3.0-alpha1
+      cross-env: 7.0.3
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
       react: 18.2.0
       react-bootstrap: 2.7.0_5ndqzdd6t4rivxsukjv3i3ak2q
@@ -6285,6 +6291,14 @@ packages:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: true
 
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+    dev: true
+
   /cross-spawn/6.0.5:
     resolution: {integrity: sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==}
     engines: {node: '>=4.8'}
@@ -10009,6 +10023,18 @@ packages:
       uuid: 8.3.2
     dev: false
 
+  /next-themes/0.2.1_3vryta7zmbcsw4rrqf4axjqggm:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /next/13.1.6:
     resolution: {integrity: sha512-hHlbhKPj9pW+Cymvfzc15lvhaOZ54l+8sXDXJWm3OBNBzgrVj6hwGPmqqsXg40xO1Leq+kXpllzRPuncpC0Phw==}
     engines: {node: '>=14.6.0'}
@@ -11264,7 +11290,6 @@ packages:
     dependencies:
       prop-types: 15.8.1
       react: 18.2.0
-    dev: false
 
   /react-bootstrap/2.7.0_5ndqzdd6t4rivxsukjv3i3ak2q:
     resolution: {integrity: sha512-Jcrn6aUuRVBeSB6dzKODKZU1TONOdhAxu0IDm4Sv74SJUm98dMdhSotF2SNvFEADANoR+stV+7TK6SNX1wWu5w==}
