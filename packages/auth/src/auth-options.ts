@@ -1,8 +1,22 @@
 import {prisma} from "@ag/db";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
-import {type NextAuthOptions} from "next-auth";
+import {DefaultSession, type NextAuthOptions} from "next-auth";
 import AzureADB2CProvider from "next-auth/providers/azure-ad-b2c";
 
+declare module "next-auth" {
+  interface Session extends DefaultSession {
+    user: {
+      id: string;
+      // ...other properties
+      // role: UserRole;
+    } & DefaultSession["user"];
+  }
+
+  // interface User {
+  //   // ...other properties
+  //   // role: UserRole;
+  // }
+}
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
