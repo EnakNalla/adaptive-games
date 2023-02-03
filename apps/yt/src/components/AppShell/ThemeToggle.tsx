@@ -1,19 +1,20 @@
 import {useTheme} from "next-themes";
 import {MoonFill, SunFill} from "react-bootstrap-icons";
-import {Button} from "react-bootstrap";
+import {Button, Nav} from "react-bootstrap";
 
 const ThemeToggle = () => {
   const {theme, setTheme} = useTheme();
 
   return (
-    <Button
+    <Nav.Link
+      as={Button}
       variant={theme === "dark" ? "outline-warning" : "outline-secondary"}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       aria-label="Toggle theme"
-      className="ms-4"
+      className="py-2 px-3"
     >
       {theme === "dark" ? <SunFill /> : <MoonFill />}
-    </Button>
+    </Nav.Link>
   );
 };
 
