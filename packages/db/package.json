@@ -1,7 +1,8 @@
 {
   "name": "@ag/db",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
+  "types": "index.ts",
   "scripts": {
     "clean": "rm -rf node_modules .turbo",
     "db:generate": "pnpm with-env prisma generate",
