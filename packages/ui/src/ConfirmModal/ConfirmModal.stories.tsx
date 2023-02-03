@@ -9,4 +9,11 @@ const Template: ComponentStory<typeof ConfirmModal> = args => <ConfirmModal {...
 
 export const Default = Template.bind({});
 
+export const WithError = Template.bind({});
+WithError.args = {
+  onConfirm: () => {
+    throw new Error("Error: Failed to delete.");
+  }
+};
+
 export default componentMeta;

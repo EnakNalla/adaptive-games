@@ -1,4 +1,4 @@
-import {Button, ButtonProps, Modal} from "react-bootstrap";
+import {Alert, Button, ButtonProps, Modal} from "react-bootstrap";
 import React from "react";
 import {Trash3Fill} from "react-bootstrap-icons";
 
@@ -20,10 +20,15 @@ export const ConfirmModal = ({
   }
 }: ConfirmModalProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
   const handleClose = () => setIsOpen(false);
   const handleConfirm = async () => {
-    await onConfirm();
-    handleClose();
+    try {
+      await onConfirm();
+      handleClose();
+    } catch (e: unknown) {
+      setError((e as Error).message);
+    }
   };
 
   return (
@@ -34,12 +39,15 @@ export const ConfirmModal = ({
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{message}</Modal.Body>
+        <Modal.Body>
+          {error && <Alert variant="danger mb-2">{error}</Alert>}
+          {message}
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose} type="button">
             Cancel
           </Button>
-          <Button variant="primary" onClick={() => void handleConfirm()}>
+          <Button variant="primary" onClick={() => void handleConfirm()} type="button">
             Confirm
           </Button>
         </Modal.Footer>
