@@ -1,6 +1,7 @@
 import {ReactNode, useCallback, useRef} from "react";
 import {getRandomNumber, images, sizes} from "./AdaptiveInput.utils";
 import {InputSize, InputType} from "./AdaptiveInput.types";
+import {InputConfig} from "@ag/db";
 
 interface InputContainerProps {
   children: ReactNode;
@@ -30,28 +31,21 @@ const InputContainer = ({children, fixedCentre}: InputContainerProps) => {
   );
 };
 
-export interface AdaptiveInputProps {
-  type: InputType;
-  size?: InputSize;
+export interface AdaptiveInputProps extends InputConfig {
   onInput: () => void;
-  fixedCentre?: boolean;
-
-  dwellTime?: number;
-  effectColour?: string;
-  circleColour?: string;
 }
 
 export const AdaptiveInput = ({
   type,
-  size = "md",
+  size,
   onInput,
   fixedCentre,
-  dwellTime = 1,
-  effectColour = "green",
-  circleColour = "red"
+  dwellTime,
+  effectColour,
+  borderColour
 }: AdaptiveInputProps) => {
-  const {circle, img} = sizes.get(size)!;
-  const imgProps = images.get(type);
+  const {circle, img} = sizes.get(size as "sm" | "md" | "lg")!;
+  const imgProps = images.get(type as "mouse" | "eyeGaze" | "touch" | "switch");
   const innerCircle = useRef<HTMLDivElement>(null);
   let timeout: number;
 
@@ -78,13 +72,13 @@ export const AdaptiveInput = ({
   };
 
   return (
-    <InputContainer fixedCentre={fixedCentre}>
+    <InputContainer fixedCentre={type === "switch" ? true : fixedCentre}>
       <div
         role={type === "mouse" || type === "touch" ? "button" : ""}
         onClick={type === "mouse" || type === "touch" ? onInput : undefined}
         onMouseEnter={type === "eyeGaze" ? onMouseEnter : undefined}
         onMouseLeave={type === "eyeGaze" ? onMouseLeave : undefined}
-        style={{width: circle, height: circle, borderColor: `${circleColour} !important`}}
+        style={{width: circle, height: circle, borderColor: `${borderColour} !important`}}
         className="position-relative border border-4 rounded-circle d-flex align-items-center text-center mx-auto overflow-hidden"
       >
         <img

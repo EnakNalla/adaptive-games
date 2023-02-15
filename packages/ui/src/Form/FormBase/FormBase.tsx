@@ -15,6 +15,7 @@ export const FormBase = <T,>({defaultValues, onSubmit, children, className}: For
 
   const handleSubmit = methods.handleSubmit(async data => {
     try {
+      setError(null);
       await onSubmit(data as T);
     } catch (e: unknown) {
       const message = e instanceof Error ? e.message : "Unknown error";

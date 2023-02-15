@@ -1,14 +1,16 @@
 import {RegisterOptions, useForm} from "react-hook-form";
-import {Button, Form, InputGroup} from "react-bootstrap";
+import {Button, ButtonProps, Form, InputGroup} from "react-bootstrap";
 
 export interface InlineFormProps {
   id: string;
   label: string;
   showLabel?: boolean;
-  onSubmit: (value: string | number) => void | Promise<void>;
-  initialValue: string | number;
+  onSubmit: (value: string) => void | Promise<void>;
+  initialValue: string;
   validation?: RegisterOptions;
   className?: string;
+  placeholder?: string;
+  btnProps?: ButtonProps;
 }
 
 export const InlineForm = ({
@@ -18,7 +20,9 @@ export const InlineForm = ({
   onSubmit,
   initialValue,
   validation,
-  className
+  className,
+  placeholder,
+  btnProps = {children: "Submit"}
 }: InlineFormProps) => {
   const {
     register,
@@ -45,8 +49,12 @@ export const InlineForm = ({
           {label}
         </Form.Label>
         <InputGroup hasValidation>
-          <Form.Control {...register("value", validation)} isInvalid={!!errors?.value} />
-          <Button type="submit">Submit</Button>
+          <Form.Control
+            {...register("value", validation)}
+            isInvalid={!!errors?.value}
+            placeholder={placeholder}
+          />
+          <Button {...btnProps} type="submit" />
 
           <Form.Control.Feedback type="invalid">{errors?.value?.message}</Form.Control.Feedback>
         </InputGroup>

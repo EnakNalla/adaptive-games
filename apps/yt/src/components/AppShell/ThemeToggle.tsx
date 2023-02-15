@@ -1,20 +1,27 @@
 import {useTheme} from "next-themes";
 import {MoonFill, SunFill} from "react-bootstrap-icons";
-import {Button, Nav} from "react-bootstrap";
+import {Form} from "react-bootstrap";
 
 const ThemeToggle = () => {
   const {theme, setTheme} = useTheme();
 
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+
   return (
-    <Nav.Link
-      as={Button}
-      variant={theme === "dark" ? "outline-warning" : "outline-secondary"}
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      aria-label="Toggle theme"
-      className="py-2 px-3"
-    >
-      {theme === "dark" ? <SunFill /> : <MoonFill />}
-    </Nav.Link>
+    <Form.Label htmlFor="theme-toggle" style={{cursor: "pointer"}}>
+      <span className="visually-hidden-focusable">Switch Theme</span>
+      <div className="d-flex align-items-center">
+        <MoonFill className="me-2 fs-4" />
+        <Form.Check
+          type="switch"
+          id="theme-toggle"
+          checked={theme === "light"}
+          className="fs-4"
+          onChange={toggleTheme}
+        />
+        <SunFill className="fs-4" />
+      </div>
+    </Form.Label>
   );
 };
 

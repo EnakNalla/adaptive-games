@@ -1,37 +1,38 @@
-import {
-  Alert,
-  Button,
-  Container,
-  Dropdown,
-  Nav,
-  Navbar,
-  NavDropdown,
-  NavLink
-} from "react-bootstrap";
+import {Alert, Button, Container, Nav, Navbar} from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
-import {signIn, signOut, useSession} from "next-auth/react";
-import {PersonFill} from "react-bootstrap-icons";
-import {ReactNode} from "react";
+import {signIn, useSession} from "next-auth/react";
+import {ReactNode, useEffect} from "react";
 import dynamic from "next/dynamic";
-import {NextRouter, useRouter} from "next/router";
-import styles from "./AppShell.module.css";
+import {useAppStore} from "../../utils/useAppStore";
+import {api} from "../../utils/api";
+import NavBar from "./NavBar";
+import {Loading} from "../Loading";
 
 const ThemeToggle = dynamic(() => import("./ThemeToggle"), {ssr: false});
 
-const navLinks: {href: string; label: string}[] = [];
-const Index = ({children}: {children: ReactNode}) => {
+const AppShell = ({children}: {children: ReactNode}) => {
   const {status} = useSession();
-  const router = useRouter();
+  const configId = useAppStore(s => s.configId);
+  const utils = api.useContext();
 
-  if (status === "loading") return null;
+  useEffect(() => {
+    if (status === "authenticated" && !configId) {
+      void (async () => {
+        const config = await utils.yt.getConfig.fetch();
+
+        useAppStore.setState({configId: config?.id});
+      })();
+    }
+  }, [status, configId]);
+
+  if (status === "loading") return <Loading />;
 
   if (status !== "authenticated") return <LoginPage />;
 
   return (
     <>
-      <NavMobile router={router} />
-      <NavDesktop router={router} />
+      <NavBar />
 
       <Container className="mt-4">{children}</Container>
     </>
@@ -65,74 +66,4 @@ const LoginPage = () => {
   );
 };
 
-interface NavProps {
-  router: NextRouter;
-}
-
-const NavMobile = ({router}: NavProps) => (
-  <Navbar expand="lg" collapseOnSelect className={`${styles.navMobile as string} bg-body-tertiary`}>
-    <Container fluid>
-      <div>
-        <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Brand as={Link} href="/" className="ms-3">
-          <Image src="/logo.svg" alt="Adaptive Games Logo" width={42} height={42} />
-        </Navbar.Brand>
-      </div>
-
-      <Nav className="flex-row">
-        <Dropdown className="me-4">
-          <Dropdown.Toggle as={NavLink}>
-            <PersonFill size={24} />
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="position-absolute" align="end">
-            <Dropdown.Item as={Button} variant="link" onClick={() => void signOut()}>
-              Logout
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-        <ThemeToggle />
-      </Nav>
-
-      <Navbar.Collapse id="navbar-nav">
-        <Nav activeKey={router.pathname}>
-          {navLinks.map(({href, label}) => (
-            <Nav.Link as={Link} href={href} key={href}>
-              {label}
-            </Nav.Link>
-          ))}
-        </Nav>
-      </Navbar.Collapse>
-    </Container>
-  </Navbar>
-);
-
-const NavDesktop = ({router}: NavProps) => (
-  <Navbar className={`${styles.navDesktop as string} bg-body-tertiary`}>
-    <Container>
-      <Navbar.Brand as={Link} href="/">
-        <Image src="/logo.svg" alt="Adaptive Games Logo" width={42} height={42} />
-      </Navbar.Brand>
-
-      <Nav activeKey={router.pathname} className="ms-4">
-        {navLinks.map(({href, label}) => (
-          <Nav.Link as={Link} href={href} key={href}>
-            {label}
-          </Nav.Link>
-        ))}
-      </Nav>
-
-      <Nav>
-        <NavDropdown title={<PersonFill size={24} />} align="end" className="me-4">
-          <NavDropdown.Item as={Button} variant="link" onClick={() => void signOut()}>
-            Logout
-          </NavDropdown.Item>
-        </NavDropdown>
-        <Nav.Item className="mx-auto">
-          <ThemeToggle />
-        </Nav.Item>
-      </Nav>
-    </Container>
-  </Navbar>
-);
-
-export default Index;
+export default AppShell;

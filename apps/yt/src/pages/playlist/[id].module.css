@@ -1,0 +1,9 @@
+.videoCard {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.videoCard:hover,
+.videoCard:focus {
+  transform: scale(1.05);
+}

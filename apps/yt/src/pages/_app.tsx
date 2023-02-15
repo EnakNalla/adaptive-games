@@ -2,7 +2,7 @@ import type {Session} from "next-auth";
 import {SessionProvider} from "next-auth/react";
 import type {AppType} from "next/app";
 import {api} from "../utils/api";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/index.scss";
 import AppShell from "../components/AppShell";
 import {ThemeProvider} from "next-themes";
 
