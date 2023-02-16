@@ -22,7 +22,13 @@ const nextConfig = {
             ],
             "connect-src": ["'self'", "https://www.googleapis.com"],
             "script-src": ["'self'", "https://www.youtube.com"],
-            "frame-src": ["'self'", "https://www.youtube-nocookie.com"]
+            "frame-src": ["'self'", "https://www.youtube-nocookie.com"],
+            "style-src": [
+              "'self'",
+              "sha256-nP8nHX3KjEA/4qIrGRj1UV7eqwe8XDtvbalJF9qILbw=",
+              "sha256-OiWNMa1KUoUcT+GxzETDUh2H7fXMK1CtGDroFtH9JWs=",
+              "sha256-R1+xbf9Fdi4eJQpt7oHawCBfsITgJsu3yj/6IeV16e8="
+            ]
           },
           permissionsPolicy: {
             fullscreen: ["'self'"]
