@@ -1,4 +1,4 @@
-import {InputType} from "../AdaptiveInput.types";
+import {type InputType} from "../AdaptiveInput.types";
 import {images} from "../AdaptiveInput.utils";
 import {Card, Col, Row} from "react-bootstrap";
 

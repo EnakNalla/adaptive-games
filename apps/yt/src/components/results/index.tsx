@@ -1,22 +1,18 @@
+import {type Video} from "@ag/db";
+import {useAutoAnimate} from "@formkit/auto-animate/react";
+import Image from "next/image";
+import {useRouter} from "next/router";
 import {useCallback, useRef} from "react";
 import {ListGroup, Spinner} from "react-bootstrap";
 import {api} from "../../utils/api";
-import Image from "next/image";
-import {useAutoAnimate} from "@formkit/auto-animate/react";
-import styles from "./results.module.css";
-import {Video} from "@ag/db";
-import {useRouter} from "next/router";
 import {useAppStore} from "../../utils/useAppStore";
+import styles from "./results.module.css";
 
 const Results = ({sidebar}: {sidebar?: boolean}) => {
   const router = useRouter();
   const [listRef] = useAutoAnimate<HTMLDivElement>();
   const [videos, pageToken, q] = useAppStore(s => [s.videos, s.pageToken, s.q]);
-  const {
-    mutateAsync: search,
-    isLoading,
-    error
-  } = api.yt.search.useMutation({
+  const {mutateAsync: search, isLoading} = api.yt.search.useMutation({
     onSuccess: data => {
       useAppStore.setState({
         pageToken,

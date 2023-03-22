@@ -1,4 +1,4 @@
-import {Video} from "@ag/db";
+import {type Video} from "@ag/db";
 import {TRPCError} from "@trpc/server";
 
 const BASE_URL = "https://www.googleapis.com/youtube/v3";

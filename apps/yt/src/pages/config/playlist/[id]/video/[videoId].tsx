@@ -78,7 +78,7 @@ const ManageVideoTimers = () => {
           await addTimer({
             mins: Number(time.mins),
             seconds: Number(time.seconds),
-            videoId: video!.id,
+            videoId: video.id,
             isGlobal: playlist.isGlobal,
             playlistId: playlist.id
           })

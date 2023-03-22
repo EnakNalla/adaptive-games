@@ -5,13 +5,13 @@ import {
   defaultConfig,
   inputConfigSchema,
   ytConfigSchema,
-  YtConfig,
+  type YtConfig,
   timerSchema,
   playlistSchema,
   videoSchema
 } from "./ytRouter.schemas";
 import {TRPCError} from "@trpc/server";
-import {InputConfig, VideoTimer} from "@ag/db";
+import {type InputConfig, type VideoTimer} from "@ag/db";
 
 const createDefaultConfig = (input: YtConfig) => ({
   ...input,

@@ -1,4 +1,4 @@
-import {Timer} from "@ag/api";
+import {type Timer} from "@ag/api";
 import {Checkbox, ConfirmModal, FormBase, Input} from "@ag/ui";
 import {Button, Table} from "react-bootstrap";
 import {useConfig} from "../../utils/hooks";

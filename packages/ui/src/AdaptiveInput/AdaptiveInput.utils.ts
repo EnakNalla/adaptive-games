@@ -2,7 +2,7 @@ import eyeSymbol from "../assets/eye.png";
 import mouseSymbol from "../assets/mouse.png";
 import switchSymbol from "../assets/switch.png";
 import touchSymbol from "../assets/touch.png";
-import {InputSize, InputType} from "./AdaptiveInput.types";
+import {type InputSize, type InputType} from "./AdaptiveInput.types";
 
 export const images = new Map<InputType, {src: string; alt: string}>([
   [

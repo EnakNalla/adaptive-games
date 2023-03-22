@@ -1,4 +1,4 @@
-import {Playlist} from "@ag/db";
+import {type Playlist} from "@ag/db";
 import {Checkbox, ConfirmModal, FormBase, Input} from "@ag/ui";
 import Link from "next/link";
 import {Button, FormText, Table} from "react-bootstrap";

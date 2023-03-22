@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/await-thenable */
-import {ComponentMeta, ComponentStory} from "@storybook/react";
+import {type ComponentMeta, type ComponentStory} from "@storybook/react";
 import {InlineForm} from "./InlineForm";
 import {userEvent, waitFor, within} from "@storybook/testing-library";
 import {expect} from "@storybook/jest";

@@ -1,7 +1,7 @@
-import {FormProps} from "../FormBase";
-import {DeepPartial, FormProvider, useForm} from "react-hook-form";
+import {type FormProps} from "../FormBase";
+import {type DeepPartial, FormProvider, useForm} from "react-hook-form";
 import {useState} from "react";
-import {Button, ButtonProps, Form, Modal, Spinner} from "react-bootstrap";
+import {Button, type ButtonProps, Form, Modal, Spinner} from "react-bootstrap";
 
 interface ModalFormProps<T> extends FormProps<T> {
   btnProps: ButtonProps;

@@ -1,5 +1,5 @@
-import {DeepPartial, FormProvider, useForm} from "react-hook-form";
-import {ReactNode, useState} from "react";
+import {type DeepPartial, FormProvider, useForm} from "react-hook-form";
+import {type ReactNode, useState} from "react";
 import {Form, Spinner} from "react-bootstrap";
 
 export interface FormProps<T> {

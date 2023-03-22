@@ -1,7 +1,6 @@
-import {ReactNode, useCallback, useRef} from "react";
+import {type InputConfig} from "@ag/db";
+import {useCallback, useRef, type ReactNode} from "react";
 import {getRandomNumber, images, sizes} from "./AdaptiveInput.utils";
-import {InputSize, InputType} from "./AdaptiveInput.types";
-import {InputConfig} from "@ag/db";
 
 interface InputContainerProps {
   children: ReactNode;

@@ -2,7 +2,7 @@ import {Alert, Button, Container, Nav, Navbar} from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
 import {signIn, useSession} from "next-auth/react";
-import {ReactNode, useEffect} from "react";
+import {type ReactNode, useEffect} from "react";
 import dynamic from "next/dynamic";
 import {useAppStore} from "../../utils/useAppStore";
 import {api} from "../../utils/api";

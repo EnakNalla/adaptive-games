@@ -1,4 +1,4 @@
-import {Timer, Video, VideoTimer} from "@ag/db";
+import {type Timer, type Video, type VideoTimer} from "@ag/db";
 import {create} from "zustand";
 
 const VALID_CODES = ["Enter", "Space", "Escape"];

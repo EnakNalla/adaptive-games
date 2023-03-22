@@ -1,7 +1,7 @@
 import {Checkbox, FormBase, Input, Select} from "@ag/ui";
 import {Button} from "react-bootstrap";
 import {api} from "../../utils/api";
-import {InputConfig} from "@ag/api";
+import {type InputConfig} from "@ag/api";
 
 interface InputConfigProps {
   configId: string;

@@ -12,7 +12,7 @@ const ManageGlobalPlaylists = () => {
     <>
       <h1 className="text-center mb-1">Manage Global playlists</h1>
       <ManagePlaylists
-        playlists={globalPlaylists!}
+        playlists={globalPlaylists}
         invalidate={() => void utils.yt.getGlobalPlaylists.invalidate()}
       />
     </>

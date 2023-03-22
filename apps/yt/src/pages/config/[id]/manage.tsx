@@ -1,4 +1,4 @@
-import {InputConfig} from "@ag/api";
+import {type InputConfig} from "@ag/api";
 import {useRouter} from "next/router";
 import {Tab, Tabs} from "react-bootstrap";
 import {ManageInputConfig} from "../../../components/config/ManageInputConfig";

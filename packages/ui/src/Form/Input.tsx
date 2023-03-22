@@ -1,6 +1,6 @@
-import {RegisterOptions, useController} from "react-hook-form";
+import {type RegisterOptions, useController} from "react-hook-form";
 import {Form} from "react-bootstrap";
-import {HTMLInputTypeAttribute} from "react";
+import {type HTMLInputTypeAttribute} from "react";
 
 export interface InputProps {
   name: string;

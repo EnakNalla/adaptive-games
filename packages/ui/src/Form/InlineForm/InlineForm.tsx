@@ -1,5 +1,5 @@
-import {RegisterOptions, useForm} from "react-hook-form";
-import {Button, ButtonProps, Form, InputGroup} from "react-bootstrap";
+import {type RegisterOptions, useForm} from "react-hook-form";
+import {Button, type ButtonProps, Form, InputGroup} from "react-bootstrap";
 
 export interface InlineFormProps {
   id: string;

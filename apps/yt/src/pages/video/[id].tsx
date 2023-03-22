@@ -1,33 +1,24 @@
+import {type Video} from "@ag/db";
 import {AdaptiveInput, ModalForm, Select} from "@ag/ui";
 import {useRouter} from "next/router";
 import {useEffect, useMemo, useRef, useState} from "react";
+import {Button, Col, Container, Form, FormGroup, ListGroup, Row} from "react-bootstrap";
 import {
-  Button,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  ListGroup,
-  ProgressBar,
-  Row
-} from "react-bootstrap";
+  PauseFill,
+  PlayFill,
+  VolumeDown,
+  VolumeMuteFill,
+  VolumeUp,
+  VolumeUpFill
+} from "react-bootstrap-icons";
 import {FullScreen, useFullScreenHandle} from "react-full-screen";
+import {type OnProgressProps} from "react-player/base";
 import ReactPlayer from "react-player/youtube";
-import {OnProgressProps} from "react-player/base";
 import {Loading} from "../../components/Loading";
+import {api} from "../../utils/api";
 import {useConfig} from "../../utils/hooks";
 import {useAppStore} from "../../utils/useAppStore";
-import {api} from "../../utils/api";
 import Results from "../results";
-import {Video} from "@ag/db";
-import {
-  VolumeMuteFill,
-  VolumeUpFill,
-  VolumeUp,
-  VolumeDown,
-  PlayFill,
-  PauseFill
-} from "react-bootstrap-icons";
 
 const BASE_URL = "https://www.youtube.com/watch?v=";
 
@@ -77,7 +68,7 @@ const Player = () => {
   const isLoading = useMemo(() => loadingVideo || loadingConfig, [loadingConfig, loadingVideo]);
   const [volume, setVolume] = useState(0.5);
   const [muted, setMuted] = useState(false);
-  const [duration, setDuration] = useState(0);
+  // const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
   const error = useMemo(
     () => (videoError ? videoError.message : configError ? configError.message : null),
@@ -189,8 +180,8 @@ const Player = () => {
                 ref={playerRef}
                 volume={volume}
                 muted={muted}
-                onReady={e => {
-                  setDuration(e.getDuration());
+                onReady={() => {
+                  // setDuration(e.getDuration());
                   if (playlistId) handleStart();
                 }}
                 {...videoEvents}

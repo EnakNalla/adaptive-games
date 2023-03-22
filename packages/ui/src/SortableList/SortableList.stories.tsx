@@ -1,5 +1,5 @@
-import {ComponentMeta} from "@storybook/react";
-import {SortableItem, SortableList} from "./SortableList";
+import {type ComponentMeta} from "@storybook/react";
+import {type SortableItem, SortableList} from "./SortableList";
 import {useState} from "react";
 
 const componentMeta: ComponentMeta<typeof SortableList> = {

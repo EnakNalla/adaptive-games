@@ -1,14 +1,13 @@
-import React, {useState} from "react";
 import {
   closestCenter,
   DndContext,
-  DragEndEvent,
   DragOverlay,
   KeyboardSensor,
   MeasuringStrategy,
   PointerSensor,
   useSensor,
-  useSensors
+  useSensors,
+  type DragEndEvent
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -17,9 +16,10 @@ import {
   useSortable,
   verticalListSortingStrategy
 } from "@dnd-kit/sortable";
+import {CSS} from "@dnd-kit/utilities";
+import {useState} from "react";
 import {Button, ListGroup} from "react-bootstrap";
 import {GripHorizontal, Trash3Fill} from "react-bootstrap-icons";
-import {CSS} from "@dnd-kit/utilities";
 
 export interface SortableItem {
   id: string;
@@ -87,13 +87,13 @@ interface BaseItemProps {
 }
 
 export const BaseItem = ({item, activeId, onDelete, isOverlay}: BaseItemProps) => {
-  if (!item) return null;
-
   const {transition, transform, setActivatorNodeRef, setNodeRef, attributes, listeners} =
     useSortable({
-      id: item.id,
+      id: item?.id ?? "",
       animateLayoutChanges: args => defaultAnimateLayoutChanges({...args, wasDragging: true})
     });
+
+  if (!item) return null;
 
   const style = {
     transition,

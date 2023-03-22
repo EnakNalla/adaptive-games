@@ -1,4 +1,4 @@
-import {RegisterOptions, useController} from "react-hook-form";
+import {type RegisterOptions, useController} from "react-hook-form";
 import {Form} from "react-bootstrap";
 
 export interface SelectOption {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises, @typescript-eslint/require-await, @typescript-eslint/await-thenable */
-import {ComponentMeta, ComponentStory} from "@storybook/react";
+import {type ComponentMeta, type ComponentStory} from "@storybook/react";
 import {FormBase} from "./FormBase";
 import {Input} from "../Input";
 import {Button} from "react-bootstrap";

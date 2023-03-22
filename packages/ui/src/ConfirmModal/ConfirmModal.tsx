@@ -1,4 +1,4 @@
-import {Alert, Button, ButtonProps, Modal} from "react-bootstrap";
+import {Alert, Button, type ButtonProps, Modal} from "react-bootstrap";
 import React from "react";
 import {Trash3Fill} from "react-bootstrap-icons";
 

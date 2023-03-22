@@ -1,6 +1,6 @@
 import {prisma} from "@ag/db";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
-import {DefaultSession, type NextAuthOptions} from "next-auth";
+import {type DefaultSession, type NextAuthOptions} from "next-auth";
 import AzureADB2CProvider from "next-auth/providers/azure-ad-b2c";
 
 declare module "next-auth" {

@@ -1,4 +1,4 @@
-import {Video} from "@ag/db";
+import {type Video} from "@ag/db";
 import {useRouter} from "next/router";
 import {useCallback, useEffect, useState} from "react";
 import {Button, Card, Col, Row} from "react-bootstrap";
@@ -83,13 +83,13 @@ const Playlist = () => {
   }
 
   const loadVideo = (video: Video) => {
-    setVideoFromPlaylist(playlist!.id, video);
+    setVideoFromPlaylist(playlist.id, video);
     void router.push(`/video/${video.id}`);
   };
 
   const loadPlaylist = () => {
-    setPlaylist(playlist!.videos);
-    void router.push(`/video/${playlist!.videos[0]!.id}`);
+    setPlaylist(playlist.videos);
+    void router.push(`/video/${playlist.videos[0]!.id}`);
   };
 
   return (
