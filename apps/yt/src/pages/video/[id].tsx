@@ -20,7 +20,7 @@ import {useConfig} from "../../utils/hooks";
 import {useAppStore} from "../../utils/useAppStore";
 import Results from "../results";
 
-const BASE_URL = "https://www.youtube.com/watch?v=";
+const BASE_URL = "https://www.youtube-nocookie.com/watch?v=";
 
 const useVideo = (id: string) => {
   const [enabled, setEnabled] = useState(false);
@@ -174,6 +174,11 @@ const Player = () => {
                 onReady={() => {
                   // setDuration(e.getDuration());
                   if (playlistId) handleStart();
+                }}
+                config={{
+                  playerVars: {
+                    origin: process.env.NEXTAUTH_URL
+                  }
                 }}
                 {...videoEvents}
               />

@@ -1,12 +1,9 @@
 const nextSafe = require("next-safe");
-/** @type {import("next").NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  transpilePackages: ["@ag/ui", "@ag/auth", "@ag/api", "@ag/db"],
-  images: {
-    domains: ["lh3.googleusercontent.com", "i.ytimg.com", "yt3.ggpht.com"]
-  },
-  headers: () => [
+
+const getHeaders = () => {
+  if (process.env.NODE_ENV !== "production") return [];
+
+  return [
     {
       source: "/:path*",
       headers: [
@@ -42,7 +39,17 @@ const nextConfig = {
         }
       ]
     }
-  ]
+  ];
+};
+
+/** @type {import("next").NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ["@ag/ui", "@ag/auth", "@ag/api", "@ag/db"],
+  images: {
+    domains: ["lh3.googleusercontent.com", "i.ytimg.com", "yt3.ggpht.com"]
+  },
+  headers: getHeaders()
 };
 
 module.exports = nextConfig;
