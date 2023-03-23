@@ -1,7 +1,7 @@
 import {type Video} from "@ag/db";
 import {AdaptiveInput, ModalForm, Select} from "@ag/ui";
 import {useRouter} from "next/router";
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Button, Col, Container, Form, FormGroup, ListGroup, Row} from "react-bootstrap";
 import {
   PauseFill,
@@ -14,10 +14,9 @@ import {
 import {FullScreen, useFullScreenHandle} from "react-full-screen";
 import {type OnProgressProps} from "react-player/base";
 import ReactPlayer from "react-player/youtube";
-import {Loading} from "../../components/Loading";
-import {api} from "../../utils/api";
-import {useConfig} from "../../utils/hooks";
-import {useAppStore} from "../../utils/useAppStore";
+import {api} from "~/utils/api";
+import {useConfig} from "~/utils/hooks";
+import {useAppStore} from "~/utils/useAppStore";
 import Results from "../results";
 
 const BASE_URL = "https://www.youtube-nocookie.com/watch?v=";
@@ -25,11 +24,7 @@ const BASE_URL = "https://www.youtube-nocookie.com/watch?v=";
 const useVideo = (id: string) => {
   const [enabled, setEnabled] = useState(false);
 
-  const {
-    data,
-    isLoading: loadingVideo,
-    error: videoError
-  } = api.yt.getVideo.useQuery(id, {
+  const {data} = api.yt.getVideo.useQuery(id, {
     refetchOnWindowFocus: false,
     refetchOnMount: true,
     refetchInterval: false,
@@ -39,10 +34,10 @@ const useVideo = (id: string) => {
   });
 
   const video = useAppStore(s => s.video);
-  if (video) return {loadingVideo: false, videoError: null, video};
+  if (video) return video;
   else if (!enabled) setEnabled(true);
 
-  return {video: data, loadingVideo, videoError};
+  return data;
 };
 
 const Player = () => {
@@ -61,21 +56,18 @@ const Player = () => {
   } = useAppStore();
   const router = useRouter();
   const fullscreenHandle = useFullScreenHandle();
-  const {loadingVideo, video} = useVideo(router.query.id as string);
-  const {isLoading: loadingConfig, data: config} = useConfig();
+  const video = useVideo(router.query.id as string);
+  const {data: config} = useConfig();
   const playerRef = useRef<ReactPlayer | null>(null);
   let timeout: NodeJS.Timeout | null;
-  const isLoading = useMemo(() => loadingVideo || loadingConfig, [loadingConfig, loadingVideo]);
   const [volume, setVolume] = useState(0.5);
   const [muted, setMuted] = useState(false);
   // const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (isLoading) return;
-
     init();
-  }, [isLoading]);
+  }, []);
 
   const init = () => {
     if (!video || !config) return;
@@ -85,11 +77,12 @@ const Player = () => {
         void router.push(`/playlist/${id}`);
       },
       () => {
-        clearTimeout(timeout!);
+        if (timeout) clearTimeout(timeout);
         if (fullscreenHandle.active) void fullscreenHandle.exit();
       },
       video,
-      config.timers.find(t => t.isDefault)!,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      config.timers.find(t => t.isDefault)!, // There will always be a default
       config.inputConfig.type
     );
 
@@ -124,7 +117,7 @@ const Player = () => {
 
   const reset = () => {
     useAppStore.setState({isPlaying: false, started: false});
-    if (video?.timers.length) useAppStore.setState({videoTimer: video.timers[0]!});
+    if (video?.timers[0]) useAppStore.setState({videoTimer: video.timers[0]});
     playerRef.current?.seekTo(0);
   };
 
@@ -134,10 +127,11 @@ const Player = () => {
   };
 
   const selectTimer = (name: string) => {
-    if (name === "video") {
-      useAppStore.setState({videoTimer: video!.timers[0]!});
+    if (name === "video" && video?.timers[0]) {
+      useAppStore.setState({videoTimer: video.timers[0]});
     } else {
-      useAppStore.setState({timer: config!.timers.find(t => t.name === name)!, videoTimer: null});
+      const timer = config?.timers.find(t => t.name === name);
+      if (timer) useAppStore.setState({timer, videoTimer: null});
     }
   };
 
@@ -145,7 +139,7 @@ const Player = () => {
     isPlaying ? pauseVideo() : playVideo();
   };
 
-  if (isLoading) return <Loading />;
+  if (!video) throw new Error("Video not found");
 
   return (
     <Container fluid>

@@ -8,10 +8,9 @@ import {useConfig} from "~/utils/hooks";
 
 const UpdateConfig = () => {
   const router = useRouter();
-  const {data: config, isLoading, invalidate} = useConfig(router.query.id as string);
+  const {data: config, invalidate} = useConfig(router.query.id as string);
 
-  if (isLoading) return null;
-  else if (!config) throw new Error("Requested config not found");
+  if (!config) throw new Error("Requested config not found");
 
   return (
     <>
