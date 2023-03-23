@@ -2,20 +2,14 @@ import {type Video} from "@ag/db";
 import {useRouter} from "next/router";
 import {useCallback, useEffect, useState} from "react";
 import {Button, Card, Col, Row} from "react-bootstrap";
-import {useConfig} from "../../utils/hooks";
-import {usePlaylist} from "../../utils/hooks";
+import {useConfig, usePlaylist} from "~/utils/hooks";
+import {useAppStore} from "~/utils/useAppStore";
 import styles from "./[id].module.css";
-import {useAppStore} from "../../utils/useAppStore";
-import {Loading} from "../../components/Loading";
 
 const Playlist = () => {
   const router = useRouter();
   const {data: config} = useConfig();
-  const {
-    data: playlist,
-    isLoading,
-    error
-  } = usePlaylist(router.query.id as string, router.query.isGlobal === "y");
+  const {data: playlist} = usePlaylist(router.query.id as string, router.query.isGlobal === "y");
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const containerCallback = useCallback((node: HTMLDivElement) => setContainer(node), []);
@@ -75,12 +69,7 @@ const Playlist = () => {
     }
   }, [activeCard]);
 
-  if (isLoading) return <Loading />;
-
-  if (error) {
-    void router.push(`/error?error=${error.message}`);
-    return null;
-  }
+  if (!playlist) throw new Error("Playlist not found");
 
   const loadVideo = (video: Video) => {
     setVideoFromPlaylist(playlist.id, video);

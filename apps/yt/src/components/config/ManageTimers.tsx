@@ -1,8 +1,8 @@
 import {type Timer} from "@ag/api";
 import {Checkbox, ConfirmModal, FormBase, Input} from "@ag/ui";
 import {Button, Table} from "react-bootstrap";
-import {useConfig} from "../../utils/hooks";
 import {api} from "../../utils/api";
+import {useConfig} from "../../utils/hooks";
 
 const defaultTimers = ["30 seconds", "Indefinite"];
 
@@ -11,7 +11,7 @@ interface TimersProps {
 }
 
 const ManageTimers = ({configId}: TimersProps) => {
-  const {data: config, isLoading, error, invalidate} = useConfig(configId);
+  const {data: config, invalidate} = useConfig(configId);
   const createMutation = api.yt.addTimer.useMutation({
     onSuccess: async () => await invalidate()
   });
@@ -22,9 +22,7 @@ const ManageTimers = ({configId}: TimersProps) => {
     onSuccess: async () => await invalidate()
   });
 
-  if (error) return <div>{error.message}</div>;
-
-  if ((isLoading && !config) || !config) return <div>Loading...</div>;
+  if (!config) throw new Error("Config not found");
 
   return (
     <>

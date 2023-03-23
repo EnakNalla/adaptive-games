@@ -2,13 +2,12 @@ import {ConfirmModal, FormBase, Input} from "@ag/ui";
 import {useRouter} from "next/router";
 import {useMemo} from "react";
 import {Button, Table} from "react-bootstrap";
-import {Loading} from "../../../../../components/Loading";
-import {usePlaylist} from "../../../../../utils/hooks";
-import {api} from "../../../../../utils/api";
+import {api} from "~/utils/api";
+import {usePlaylist} from "~/utils/hooks";
 
 const ManageVideoTimers = () => {
   const router = useRouter();
-  const {data: playlist, error, isLoading, invalidate} = usePlaylist(router.query.id as string);
+  const {data: playlist, invalidate} = usePlaylist(router.query.id as string);
   const {mutateAsync: addTimer} = api.yt.addVideoTimer.useMutation({
     onSuccess: async () => await invalidate()
   });
@@ -21,17 +20,8 @@ const ManageVideoTimers = () => {
     return playlist.videos.find(video => video.id === router.query.videoId);
   }, [playlist]);
 
-  if (isLoading || !playlist) return <Loading />;
-
-  if (playlist && !video) {
-    void router.push("/error", {query: {error: "Video not found in playlist"}});
-    return null;
-  }
-
-  if (error) {
-    void router.push("/error", {query: {error: error.message}});
-    return null;
-  }
+  if (!playlist) throw new Error("Playlist not found");
+  if (!video) throw new Error("Video not found");
 
   return (
     <>

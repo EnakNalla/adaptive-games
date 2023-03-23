@@ -2,29 +2,18 @@ import {ConfirmModal} from "@ag/ui";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {Table} from "react-bootstrap";
-import {Loading} from "../../../../components/Loading";
-import {usePlaylist} from "../../../../utils/hooks";
-import {api} from "../../../../utils/api";
+import {api} from "~/utils/api";
+import {usePlaylist} from "~/utils/hooks";
 
 const ManageVideos = () => {
   const router = useRouter();
   const isGlobal = router.query.isGlobal === "y";
-  const {
-    data: playlist,
-    error,
-    isLoading,
-    invalidate
-  } = usePlaylist(router.query.id as string, isGlobal);
+  const {data: playlist, invalidate} = usePlaylist(router.query.id as string, isGlobal);
   const {mutate: deleteVideo} = api.yt.deleteVideo.useMutation({
     onSuccess: async () => await invalidate()
   });
 
-  if (isLoading || !playlist) return <Loading />;
-
-  if (error) {
-    void router.push("/error", {query: {error: error.message}});
-    return null;
-  }
+  if (!playlist) throw new Error("Playlist not found");
 
   return (
     <>

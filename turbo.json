@@ -28,6 +28,8 @@
     "AZURE_AD_B2C_PRIMARY_USER_FLOW",
     "DATABASE_URL",
     "NODE_ENV",
+    "NEXTAUTH_SECRET",
+    "NEXTAUTH_URL",
     "PORT",
     "YT_API_KEY"
   ]

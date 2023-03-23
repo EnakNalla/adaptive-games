@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import {useAppStore} from "./useAppStore";
 import {api} from "../utils/api";
+import {useAppStore} from "./useAppStore";
 
 const queryOptions = {
   staleTime: Infinity,
@@ -42,7 +42,7 @@ export const usePlaylist = (id?: string, isGlobal = false) => {
     {...queryOptions, enabled: !!id}
   );
 
-  const invalidate = async () => await utils.yt.getPlaylist.invalidate();
+  const invalidate = async (): Promise<void> => await utils.yt.getPlaylist.invalidate();
 
   return {...query, invalidate};
 };

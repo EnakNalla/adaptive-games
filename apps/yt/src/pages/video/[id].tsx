@@ -61,8 +61,8 @@ const Player = () => {
   } = useAppStore();
   const router = useRouter();
   const fullscreenHandle = useFullScreenHandle();
-  const {loadingVideo, videoError, video} = useVideo(router.query.id as string);
-  const {isLoading: loadingConfig, data: config, error: configError} = useConfig();
+  const {loadingVideo, video} = useVideo(router.query.id as string);
+  const {isLoading: loadingConfig, data: config} = useConfig();
   const playerRef = useRef<ReactPlayer | null>(null);
   let timeout: NodeJS.Timeout | null;
   const isLoading = useMemo(() => loadingVideo || loadingConfig, [loadingConfig, loadingVideo]);
@@ -70,18 +70,9 @@ const Player = () => {
   const [muted, setMuted] = useState(false);
   // const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
-  const error = useMemo(
-    () => (videoError ? videoError.message : configError ? configError.message : null),
-    [videoError, configError]
-  );
 
   useEffect(() => {
     if (isLoading) return;
-
-    if (error) {
-      void router.push(`/error?error=${error}`);
-      return;
-    }
 
     init();
   }, [isLoading]);

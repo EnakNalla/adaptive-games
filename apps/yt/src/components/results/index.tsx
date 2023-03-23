@@ -4,8 +4,8 @@ import Image from "next/image";
 import {useRouter} from "next/router";
 import {useCallback, useRef} from "react";
 import {ListGroup, Spinner} from "react-bootstrap";
-import {api} from "../../utils/api";
-import {useAppStore} from "../../utils/useAppStore";
+import {api} from "~/utils/api";
+import {useAppStore} from "~/utils/useAppStore";
 import styles from "./results.module.css";
 
 const Results = ({sidebar}: {sidebar?: boolean}) => {

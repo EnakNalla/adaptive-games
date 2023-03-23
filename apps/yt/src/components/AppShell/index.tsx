@@ -1,13 +1,13 @@
-import {Alert, Button, Container, Nav, Navbar} from "react-bootstrap";
-import Link from "next/link";
-import Image from "next/image";
 import {signIn, useSession} from "next-auth/react";
-import {type ReactNode, useEffect} from "react";
 import dynamic from "next/dynamic";
-import {useAppStore} from "../../utils/useAppStore";
-import {api} from "../../utils/api";
-import NavBar from "./NavBar";
+import Image from "next/image";
+import Link from "next/link";
+import {useEffect, type ReactNode} from "react";
+import {Alert, Button, Container, Nav, Navbar} from "react-bootstrap";
+import {api} from "~/utils/api";
+import {useAppStore} from "~/utils/useAppStore";
 import {Loading} from "../Loading";
+import NavBar from "./NavBar";
 
 const ThemeToggle = dynamic(() => import("./ThemeToggle"), {ssr: false});
 

@@ -33,7 +33,8 @@ module.exports = {
     "@typescript-eslint/consistent-type-imports": [
       "error",
       {prefer: "type-imports", fixStyle: "inline-type-imports"}
-    ]
+    ],
+    "react-hooks/exhaustive-deps": "off"
   },
   ignorePatterns: ["**/*.config.js", "**/*.config.cjs", "packages/config/**"],
   reportUnusedDisableDirectives: true

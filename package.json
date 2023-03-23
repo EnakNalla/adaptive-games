@@ -9,7 +9,8 @@
     "format": "prettier --write **/*.{ts,tsx,md,js,mjs,cjs,json}",
     "lint": "eslint . --ext .ts,.tsx",
     "db:generate": "turbo db:generate",
-    "db:push": "turbo db:push"
+    "db:push": "turbo db:push",
+    "dev": "turbo dev"
   },
   "engines": {
     "node": ">=14.0.0",

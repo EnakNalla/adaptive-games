@@ -1,17 +1,17 @@
-import {createTRPCRouter, protectedProcedure} from "../../trpc";
+import {type InputConfig, type VideoTimer} from "@ag/db";
+import {TRPCError} from "@trpc/server";
 import {z} from "zod";
+import {createTRPCRouter, protectedProcedure} from "../../trpc";
 import {getVideoFromYT, searchYT} from "./ytApi";
 import {
   defaultConfig,
   inputConfigSchema,
-  ytConfigSchema,
-  type YtConfig,
-  timerSchema,
   playlistSchema,
-  videoSchema
+  timerSchema,
+  videoSchema,
+  ytConfigSchema,
+  type YtConfig
 } from "./ytRouter.schemas";
-import {TRPCError} from "@trpc/server";
-import {type InputConfig, type VideoTimer} from "@ag/db";
 
 const createDefaultConfig = (input: YtConfig) => ({
   ...input,

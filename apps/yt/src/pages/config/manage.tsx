@@ -2,15 +2,14 @@ import {ConfirmModal, InlineForm} from "@ag/ui";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {Button, Table} from "react-bootstrap";
-import {Loading} from "../../components/Loading";
-import {useAllConfigs} from "../../utils/hooks";
-import {useAppStore} from "../../utils/useAppStore";
-import {api} from "../../utils/api";
+import {api} from "~/utils/api";
+import {useAllConfigs} from "~/utils/hooks";
+import {useAppStore} from "~/utils/useAppStore";
 
 const ManageConfigs = () => {
   const router = useRouter();
   const configId = useAppStore(s => s.configId);
-  const {data: allConfigs, isLoading, error, invalidate} = useAllConfigs();
+  const {data: allConfigs, invalidate} = useAllConfigs();
   const {mutate: deleteConfig} = api.yt.deleteConfig.useMutation({
     onSuccess: () => invalidate()
   });
@@ -21,9 +20,7 @@ const ManageConfigs = () => {
     onSuccess: data => router.push(`/config/${data.id}/manage`)
   });
 
-  if (error) void router.push("/error", {query: {error: error.message}});
-
-  if (isLoading || !allConfigs) return <Loading />;
+  if (!allConfigs) throw new Error("Configs not found");
 
   const loadConfig = (id: string) => {
     useAppStore.setState({configId: id});
