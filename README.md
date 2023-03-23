@@ -1,6 +1,9 @@
 <div align="center">
+
 # Adaptive Games
-![logo](./apps/yt/public/logo.svg)
+
+<img alt="logo" src="./apps/yt/public/logo.svg" width="64" />
+
 </div>
 
 ## About
