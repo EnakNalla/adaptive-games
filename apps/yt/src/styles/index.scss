@@ -11,4 +11,26 @@ $primary-bg-subtle-dark: #4c3690;
 $primary-border-subtle-dark: #6548c0;
 $link-color-dark: $primary;
 
+#loading {
+  height: 90vh;
+}
+
+#spinner {
+  width: 4rem;
+  height: 4rem;
+}
+
+#theme-toggle {
+  cursor: pointer;
+}
+
+#player-container {
+  grid-area: 1/1;
+}
+
+#player-overlay {
+  grid-area: 1/1;
+  z-index: 50;
+}
+
 @import "bootstrap/scss/bootstrap";

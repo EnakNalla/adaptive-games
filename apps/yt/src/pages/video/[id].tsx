@@ -155,7 +155,7 @@ const Player = () => {
           <FullScreen handle={fullscreenHandle} className="d-grid">
             <div
               className={`ratio ratio-16x9 ${!started ? "" : isPlaying ? "" : "invisible"}`}
-              style={{gridArea: "1/1"}}
+              id="player-container"
             >
               <ReactPlayer
                 url={`${BASE_URL}${video?.id ?? ""}`}
@@ -177,7 +177,7 @@ const Player = () => {
                 {...videoEvents}
               />
             </div>
-            <div style={{gridArea: "1/1", zIndex: "50"}} />
+            <div id="player-overlay" />
             {!isPlaying && config?.inputConfig && started && (
               <AdaptiveInput {...config.inputConfig} onInput={handlePlay} />
             )}

@@ -1,6 +1,6 @@
 import {useTheme} from "next-themes";
-import {MoonFill, SunFill} from "react-bootstrap-icons";
 import {Form} from "react-bootstrap";
+import {MoonFill, SunFill} from "react-bootstrap-icons";
 
 const ThemeToggle = () => {
   const {theme, setTheme} = useTheme();
@@ -8,7 +8,7 @@ const ThemeToggle = () => {
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
   return (
-    <Form.Label htmlFor="theme-toggle" style={{cursor: "pointer"}}>
+    <Form.Label htmlFor="theme-toggle" id="theme-toggle">
       <span className="visually-hidden-focusable">Switch Theme</span>
       <div className="d-flex align-items-center">
         <MoonFill className="me-2 fs-4" />
