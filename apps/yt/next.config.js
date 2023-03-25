@@ -29,7 +29,8 @@ const nextConfig = {
                 "'self'",
                 "'sha256-nP8nHX3KjEA/4qIrGRj1UV7eqwe8XDtvbalJF9qILbw='",
                 "'sha256-OiWNMa1KUoUcT+GxzETDUh2H7fXMK1CtGDroFtH9JWs='",
-                "'sha256-R1+xbf9Fdi4eJQpt7oHawCBfsITgJsu3yj/6IeV16e8='"
+                "'sha256-R1+xbf9Fdi4eJQpt7oHawCBfsITgJsu3yj/6IeV16e8='",
+                "'unsafe-inline'" // TODO: css modules do not have a nonce, figure out how to fix this
               ]
             },
             permissionsPolicy: {
