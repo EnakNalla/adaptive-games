@@ -1,8 +1,9 @@
 import {type Video} from "@ag/db";
 import {AdaptiveInput, ModalForm, Select} from "@ag/ui";
+import Head from "next/head";
 import {useRouter} from "next/router";
 import {useEffect, useRef, useState} from "react";
-import {Button, Col, Container, Form, FormGroup, ListGroup, Row} from "react-bootstrap";
+import {Button, Col, Container, Form, FormGroup, ListGroup, Row, Spinner} from "react-bootstrap";
 import {
   PauseFill,
   PlayFill,
@@ -15,7 +16,7 @@ import {FullScreen, useFullScreenHandle} from "react-full-screen";
 import {type OnProgressProps} from "react-player/base";
 import ReactPlayer from "react-player/youtube";
 import {api} from "~/utils/api";
-import {useConfig} from "~/utils/hooks";
+import {queryOptions, useConfig} from "~/utils/hooks";
 import {useAppStore} from "~/utils/useAppStore";
 import Results from "../results";
 
@@ -24,7 +25,7 @@ const BASE_URL = "https://www.youtube-nocookie.com/watch?v=";
 const useVideo = (id: string) => {
   const [enabled, setEnabled] = useState(false);
 
-  const {data} = api.yt.getVideo.useQuery(id, {
+  const {data, isLoading} = api.yt.getVideo.useQuery(id, {
     refetchOnWindowFocus: false,
     refetchOnMount: true,
     refetchInterval: false,
@@ -34,10 +35,10 @@ const useVideo = (id: string) => {
   });
 
   const video = useAppStore(s => s.video);
-  if (video) return video;
+  if (video) return {video, isLoading: false};
   else if (!enabled) setEnabled(true);
 
-  return data;
+  return {video: data, isLoading};
 };
 
 const Player = () => {
@@ -56,18 +57,29 @@ const Player = () => {
   } = useAppStore();
   const router = useRouter();
   const fullscreenHandle = useFullScreenHandle();
-  const video = useVideo(router.query.id as string);
+  const {video, isLoading} = useVideo(router.query.id as string);
   const {data: config} = useConfig();
   const playerRef = useRef<ReactPlayer | null>(null);
   let timeout: NodeJS.Timeout | null;
   const [volume, setVolume] = useState(0.5);
   const [muted, setMuted] = useState(false);
-  // const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    init();
-  }, []);
+    if (isLoading) return;
+
+    return init();
+  }, [isLoading]);
+
+  if (isLoading)
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
+    );
 
   const init = () => {
     if (!video || !config) return;
@@ -100,10 +112,12 @@ const Player = () => {
     onPause() {
       if (timeout) clearTimeout(timeout);
     },
-    onProgress({playedSeconds, played}: OnProgressProps) {
-      setProgress(played);
+    onProgress({playedSeconds}: OnProgressProps) {
+      setProgress(playedSeconds);
       if (!videoTimer) return;
 
+      console.log(playedSeconds);
+      console.log(videoTimer.pauseTime);
       if (playedSeconds >= videoTimer.pauseTime) {
         pauseVideo();
       }
@@ -141,13 +155,23 @@ const Player = () => {
 
   if (!video) throw new Error("Video not found");
 
+  const onOverlayClick = () => {
+    if (config?.inputConfig.type === "touch" || config?.inputConfig.type === "mouse") {
+      if (isPlaying) pauseVideo();
+    }
+  };
+
   return (
     <Container fluid>
+      <Head>
+        <title>{video.title}</title>
+      </Head>
+
       <Row>
         <Col sm="12" md="8">
           <div className="d-flex justify-content-between mb-2">
             <h1 className="fw-semibold fs-3">{video?.title}</h1>
-            <Button variant="warning" onClick={reset}>
+            <Button variant="warning" onClick={reset} className="align-self-center">
               Reset
             </Button>
           </div>
@@ -165,8 +189,8 @@ const Player = () => {
                 ref={playerRef}
                 volume={volume}
                 muted={muted}
-                onReady={() => {
-                  // setDuration(e.getDuration());
+                onReady={e => {
+                  setDuration(e.getDuration());
                   if (playlistId) handleStart();
                 }}
                 config={{
@@ -177,7 +201,7 @@ const Player = () => {
                 {...videoEvents}
               />
             </div>
-            <div id="player-overlay" />
+            <div id="player-overlay" onClick={onOverlayClick} />
             {!isPlaying && config?.inputConfig && started && (
               <AdaptiveInput {...config.inputConfig} onInput={handlePlay} />
             )}
@@ -189,10 +213,13 @@ const Player = () => {
                 <Button onClick={handleStart}>Start</Button>
               </div>
             )}
+            <p className="text-center mt-2">
+              <Time seconds={progress} /> / <Time seconds={duration} />
+            </p>
             <input
               type="range"
               min={0}
-              max={0.999999}
+              max={duration}
               step="any"
               value={progress}
               onMouseUp={e => {
@@ -262,9 +289,15 @@ const Player = () => {
 const AddVideo = ({video}: {video?: Video}) => {
   const {mutateAsync: addVideo} = api.yt.addVideo.useMutation();
   const {data: globalPlaylists} = api.yt.getGlobalPlaylists.useQuery();
-  const {data: config} = useConfig();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const {data: userPlaylists} = api.yt.getUserPlaylists.useQuery(undefined, queryOptions);
 
-  if (!video || !globalPlaylists || !config) return null;
+  useEffect(() => {
+    console.log(userPlaylists);
+  }, [userPlaylists]);
+
+  if (!video || !globalPlaylists || !userPlaylists) return null;
 
   return (
     <ModalForm
@@ -284,13 +317,32 @@ const AddVideo = ({video}: {video?: Video}) => {
         label="Select playlist"
         options={[
           ...globalPlaylists.map(p => ({label: p.name + " (global)", value: p.id})),
-          ...config.playlists.map(p => ({label: p.name, value: p.id})),
+          ...userPlaylists.map(p => ({label: p.name, value: p.id})),
           {value: "", label: "Please select a playlist"}
         ]}
         validation={{required: "A playlist must be selected"}}
       />
     </ModalForm>
   );
+};
+
+const Time = ({seconds}: {seconds: number}) => {
+  return <time dateTime={`P${Math.round(seconds)}S`}>{timeFormat(seconds)}</time>;
+};
+
+const timeFormat = (seconds: number) => {
+  const date = new Date(seconds * 1000);
+  const hh = date.getUTCHours();
+  const mm = date.getUTCMinutes();
+  const ss = pad(date.getUTCSeconds());
+  if (hh) {
+    return `${hh}:${pad(mm)}:${ss}`;
+  }
+  return `${mm}:${ss}`;
+};
+
+const pad = (s: number) => {
+  return `0${s}`.slice(-2);
 };
 
 export default Player;

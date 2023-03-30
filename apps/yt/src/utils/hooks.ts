@@ -2,7 +2,7 @@
 import {api} from "../utils/api";
 import {useAppStore} from "./useAppStore";
 
-const queryOptions = {
+export const queryOptions = {
   staleTime: Infinity,
   refetchOnWindowFocus: false,
   refetchOnReconnect: false,

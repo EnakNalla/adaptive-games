@@ -88,17 +88,18 @@ export const useAppStore = create<AppStore>()((set, get) => ({
   videoTimer: null,
   isPlaying: false,
   video: null,
-  videoTimerIndex: -1,
+  videoTimerIndex: 0,
   inputType: "",
   handlePlay() {
     set(state => {
       if (state.videoTimer) {
-        const videoTimer = state.video?.timers[state.videoTimerIndex + 1];
+        const videoTimer = state.video?.timers[state.videoTimerIndex];
+        console.log(videoTimer);
 
         return {
           videoTimer: videoTimer ?? null,
           isPlaying: true,
-          videoTimerIndex: videoTimer ? state.videoTimerIndex + 1 : -1
+          videoTimerIndex: videoTimer ? state.videoTimerIndex + 1 : 0
         };
       }
 

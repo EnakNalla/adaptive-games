@@ -26,7 +26,7 @@ const AppShell = ({children}: {children: ReactNode}) => {
     }
   }, [status, configId]);
 
-  if (status === "loading") return <Loading />;
+  if (status === "loading" || !configId) return <Loading />;
 
   if (status !== "authenticated") return <LoginPage />;
 
@@ -34,7 +34,9 @@ const AppShell = ({children}: {children: ReactNode}) => {
     <>
       <NavBar />
 
-      <Container className="mt-4">{children}</Container>
+      <Container fluid className="mt-4">
+        {children}
+      </Container>
     </>
   );
 };

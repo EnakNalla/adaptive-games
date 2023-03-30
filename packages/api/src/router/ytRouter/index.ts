@@ -73,7 +73,12 @@ const getters = {
     .input(z.object({q: z.string(), pageToken: z.string().optional()}))
     .mutation(async ({input}) => {
       return await searchYT(input.q, input.pageToken);
-    })
+    }),
+  getUserPlaylists: protectedProcedure.query(async ({ctx}) => {
+    const userId = ctx.session.user.id;
+
+    return await ctx.prisma.playlist.findMany({where: {userId}});
+  })
 };
 
 const mutations = {
