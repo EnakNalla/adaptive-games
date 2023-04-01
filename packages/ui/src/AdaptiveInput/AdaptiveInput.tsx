@@ -1,5 +1,5 @@
 import {type InputConfig} from "@ag/db";
-import {useCallback, useRef, type ReactNode} from "react";
+import {useCallback, useEffect, useRef, type ReactNode} from "react";
 import {getRandomNumber, images, sizes} from "./AdaptiveInput.utils";
 
 interface InputContainerProps {
@@ -46,6 +46,7 @@ export const AdaptiveInput = ({
   const {circle, img} = sizes.get(size)!;
   const imgProps = images.get(type);
   const innerCircle = useRef<HTMLDivElement>(null);
+  const container = useRef<HTMLDivElement>(null);
   let timeout: number;
 
   const onMouseEnter = () => {
@@ -70,6 +71,12 @@ export const AdaptiveInput = ({
     innerCircle.current.style.backgroundColor = "";
   };
 
+  useEffect(() => {
+    if (!container.current) return;
+
+    container.current.style.setProperty("border-color", borderColour, "important");
+  }, [borderColour, container.current]);
+
   return (
     <InputContainer fixedCentre={type === "SWITCH" ? true : fixedCentre}>
       <div
@@ -79,6 +86,7 @@ export const AdaptiveInput = ({
         onMouseLeave={type === "EYEGAZE" ? onMouseLeave : undefined}
         style={{width: circle, height: circle, borderColor: `${borderColour} !important`}}
         className="position-relative border border-4 rounded-circle d-flex align-items-center text-center mx-auto overflow-hidden"
+        ref={container}
       >
         <img
           {...imgProps}
