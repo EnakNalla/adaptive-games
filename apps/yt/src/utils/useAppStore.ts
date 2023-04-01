@@ -94,7 +94,6 @@ export const useAppStore = create<AppStore>()((set, get) => ({
     set(state => {
       if (state.videoTimer) {
         const videoTimer = state.video?.timers[state.videoTimerIndex];
-        console.log(videoTimer);
 
         return {
           videoTimer: videoTimer ?? null,

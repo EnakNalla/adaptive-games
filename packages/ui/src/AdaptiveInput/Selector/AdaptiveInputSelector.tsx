@@ -1,6 +1,6 @@
-import {type InputType} from "../AdaptiveInput.types";
 import {images} from "../AdaptiveInput.utils";
 import {Card, Col, Row} from "react-bootstrap";
+import {type InputType} from "@ag/db";
 
 export const AdaptiveInputSelector = ({onSelect}: {onSelect: (type: InputType) => void}) => {
   return (

@@ -92,13 +92,26 @@ type Timer {
   isDefault Boolean
 }
 
+enum InputSize {
+  SM
+  MD
+  LG
+}
+
+enum InputType {
+  TOUCH
+  MOUSE
+  SWITCH
+  EYEGAZE
+}
+
 type InputConfig {
   fixedCentre  Boolean
   dwellTime    Int
   effectColour String
   borderColour String
-  size         String
-  type         String
+  size         InputSize
+  type         InputType
 }
 
 type Video {

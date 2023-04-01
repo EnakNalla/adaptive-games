@@ -12,29 +12,29 @@ const Template: ComponentStory<typeof AdaptiveInput> = args => <AdaptiveInput {.
 
 export const Switch = Template.bind({});
 Switch.args = {
-  type: "switch",
-  size: "md",
+  type: "SWITCH",
+  size: "MD",
   fixedCentre: false
 };
 
 export const Touch = Template.bind({});
 Touch.args = {
-  type: "touch",
-  size: "md",
+  type: "TOUCH",
+  size: "MD",
   fixedCentre: false
 };
 
 export const Mouse = Template.bind({});
 Mouse.args = {
-  type: "mouse",
-  size: "md",
+  type: "MOUSE",
+  size: "MD",
   fixedCentre: false
 };
 
 export const EyeGaze = Template.bind({});
 EyeGaze.args = {
-  type: "eyeGaze",
-  size: "md",
+  type: "EYEGAZE",
+  size: "MD",
   fixedCentre: false
 };
 export default componentMeta;

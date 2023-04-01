@@ -60,7 +60,10 @@ const Results = ({sidebar}: {sidebar?: boolean}) => {
               <Image src={thumb} {...size} alt={video.title} />
 
               <div>
-                <p className={`${styles.title ?? ""} ${sidebar ? "fs-6" : ""}`}>{video.title}</p>
+                <p
+                  className={`${styles.title ?? ""} ${sidebar ? "fs-6" : ""}`}
+                  dangerouslySetInnerHTML={{__html: video.title}}
+                />
                 {!sidebar && <p className={styles.description}>{video.description}</p>}
               </div>
             </ListGroup.Item>

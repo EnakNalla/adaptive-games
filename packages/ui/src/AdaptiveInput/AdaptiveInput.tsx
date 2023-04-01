@@ -43,8 +43,8 @@ export const AdaptiveInput = ({
   effectColour,
   borderColour
 }: AdaptiveInputProps) => {
-  const {circle, img} = sizes.get(size as "sm" | "md" | "lg")!;
-  const imgProps = images.get(type as "mouse" | "eyeGaze" | "touch" | "switch");
+  const {circle, img} = sizes.get(size)!;
+  const imgProps = images.get(type);
   const innerCircle = useRef<HTMLDivElement>(null);
   let timeout: number;
 
@@ -71,12 +71,12 @@ export const AdaptiveInput = ({
   };
 
   return (
-    <InputContainer fixedCentre={type === "switch" ? true : fixedCentre}>
+    <InputContainer fixedCentre={type === "SWITCH" ? true : fixedCentre}>
       <div
-        role={type === "mouse" || type === "touch" ? "button" : ""}
-        onClick={type === "mouse" || type === "touch" ? onInput : undefined}
-        onMouseEnter={type === "eyeGaze" ? onMouseEnter : undefined}
-        onMouseLeave={type === "eyeGaze" ? onMouseLeave : undefined}
+        role={type === "MOUSE" || type === "TOUCH" ? "button" : ""}
+        onClick={type === "MOUSE" || type === "TOUCH" ? onInput : undefined}
+        onMouseEnter={type === "EYEGAZE" ? onMouseEnter : undefined}
+        onMouseLeave={type === "EYEGAZE" ? onMouseLeave : undefined}
         style={{width: circle, height: circle, borderColor: `${borderColour} !important`}}
         className="position-relative border border-4 rounded-circle d-flex align-items-center text-center mx-auto overflow-hidden"
       >
@@ -85,7 +85,7 @@ export const AdaptiveInput = ({
           style={{width: img, height: img}}
           className="d-block mx-auto text-center"
         />
-        {type === "eyeGaze" && (
+        {type === "EYEGAZE" && (
           <>
             <style>
               {`

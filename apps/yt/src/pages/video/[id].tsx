@@ -116,8 +116,6 @@ const Player = () => {
       setProgress(playedSeconds);
       if (!videoTimer) return;
 
-      console.log(playedSeconds);
-      console.log(videoTimer.pauseTime);
       if (playedSeconds >= videoTimer.pauseTime) {
         pauseVideo();
       }
@@ -156,7 +154,7 @@ const Player = () => {
   if (!video) throw new Error("Video not found");
 
   const onOverlayClick = () => {
-    if (config?.inputConfig.type === "touch" || config?.inputConfig.type === "mouse") {
+    if (config?.inputConfig.type === "TOUCH" || config?.inputConfig.type === "MOUSE") {
       if (isPlaying) pauseVideo();
     }
   };
@@ -164,7 +162,7 @@ const Player = () => {
   return (
     <Container fluid>
       <Head>
-        <title>{video.title}</title>
+        <title dangerouslySetInnerHTML={{__html: video.title}} />
       </Head>
 
       <Row>

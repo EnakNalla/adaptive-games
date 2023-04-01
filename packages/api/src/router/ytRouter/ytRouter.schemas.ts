@@ -1,3 +1,4 @@
+import {InputSize, InputType} from "@ag/db";
 import {z} from "zod";
 
 export const timerSchema = z.object({
@@ -19,8 +20,8 @@ export const inputConfigSchema = z.object({
   dwellTime: z.number(),
   effectColour: z.string(),
   borderColour: z.string(),
-  size: z.enum(["sm", "md", "lg"]),
-  type: z.enum(["mouse", "touch", "switch", "eyeGaze"]),
+  size: z.enum(["SM", "MD", "LG"]),
+  type: z.enum(["SWITCH", "TOUCH", "SWITCH", "EYEGAZE"]),
   fixedCentre: z.boolean()
 });
 
@@ -31,8 +32,8 @@ export const defaultConfig = {
     dwellTime: 1,
     effectColour: "#ff0000",
     borderColour: "#000000",
-    size: "md",
-    type: "switch",
+    size: InputSize.MD,
+    type: InputType.SWITCH,
     fixedCentre: false
   },
   timers: [
