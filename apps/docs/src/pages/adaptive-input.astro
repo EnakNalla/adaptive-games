@@ -1,0 +1,243 @@
+---
+import DocLayout from "../layouts/DocLayout.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Adaptive Input">
+  <DocLayout>
+    <nav class="nav nav-pills flex-column" slot="sidebar">
+      <a class="nav-link" href="#options">Options</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link ms-3 my-1" href="#eyegaze">Eye gaze</a>
+        <a class="nav-link ms-3 my-1" href="#switch">Switch</a>
+        <a class="nav-link ms-3 my-1" href="#mouse">Mouse</a>
+        <a class="nav-link ms-3 my-1" href="#touch">Touch</a>
+      </nav>
+      <a class="nav-link" href="#eygaze-config">Config</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link ms-3 my-1" href="#sizes">Size</a>
+        <a class="nav-link ms-3 my-1" href="#border-colour">Color</a>
+        <a class="nav-link ms-3 my-1" href="#fixed-centre">Fixed centre</a>
+        <a class="nav-link ms-3 my-1" href="#eyegaze-config">Eyegaze config</a>
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link ms-5 my-1" href="#dwell-time">Dwell time</a>
+          <a class="nav-link ms-5 my-1" href="#effect-color">Effect colour</a>
+        </nav>
+      </nav>
+    </nav>
+
+    <h1 class="text-center">Adaptive Input</h1>
+
+    <section id="options" class="my-4">
+      <h2 class="text-center">Options</h2>
+      <img
+        src="/adaptive-input/adaptive-input.png"
+        alt="Adaptive input choices"
+        class="img-fluid"
+      />
+
+      <section id="eyegaze" class="my-4">
+        <h3 class="text-center">Eye gaze</h3>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <img
+              src="/adaptive-input/eyegaze-md.png"
+              alt="Adaptive input eyegaze"
+              class="img-fluid"
+            />
+          </div>
+
+          <div class="col-sm-12 col-md-6 align-self-center">
+            <p>
+              With an eye gaze system, the user must locate and fixate on the symbol for a defined
+              amount of time.
+            </p>
+            <p>For configuration see <a href="#eygaze-config">eyegaze config</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="switch" class="my-4">
+        <h3 class="text-center">Switch</h3>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <img
+              src="/adaptive-input/switch-md.png"
+              alt="Adaptive input switch"
+              class="img-fluid"
+            />
+          </div>
+
+          <div class="col-sm-12 col-md-6 align-self-center">
+            <p>
+              With a switch, the user must press the switch to activate when symbol is shown. 2
+              switch mode is available on select apps. See the apps section for details.
+            </p>
+            <p>For configuration see <a href="#switch-config">switch config</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="mouse" class="my-4">
+        <h3 class="text-center">Mouse</h3>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <img src="/adaptive-input/mouse-md.png" alt="Adaptive input mouse" class="img-fluid" />
+          </div>
+
+          <div class="col-sm-12 col-md-6 align-self-center">
+            <p>With a mouse, the user must move the mouse to the symbol and click to activate.</p>
+            <p>For configuration see <a href="#mouse-config">mouse config</a>.</p>
+          </div>
+        </div>
+      </section>
+      <section id="touch" class="my-4">
+        <h3 class="text-center">Touch</h3>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <img src="/adaptive-input/touch-md.png" alt="Adaptive input touch" class="img-fluid" />
+          </div>
+
+          <div class="col-sm-12 col-md-6 align-self-center">
+            <p>With a touch screen, the user must touch the symbol to activate.</p>
+            <p>For configuration see <a href="#touch-config">touch config</a>.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="config" class="my-4">
+      <h2 class="text-center">Config</h2>
+      <img src="/yt/input-config.png" alt="Adaptive input config" class="img-fluid my-4" />
+
+      <section id="sizes">
+        <h3>Sizes</h3>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <p class="text-center">Small</p>
+            <div
+              id="small-input"
+              class="border border-4 rounded-circle d-flex align-items-center text-center mx-auto overflow-hidden"
+            >
+              <img
+                src="/adaptive-input/switch.png"
+                alt="Small input"
+                class="d-block mx-auto text-center"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-4">
+            <p class="text-center">Medium</p>
+            <div
+              id="medium-input"
+              class="border border-4 rounded-circle d-flex align-items-center text-center mx-auto overflow-hidden"
+            >
+              <img
+                src="/adaptive-input/switch.png"
+                alt="Small input"
+                class="d-block mx-auto text-center"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-4">
+            <p class="text-center">Large</p>
+            <div
+              id="large-input"
+              class="border border-4 rounded-circle d-flex align-items-center text-center mx-auto overflow-hidden"
+            >
+              <img
+                src="/adaptive-input/switch.png"
+                alt="Small input"
+                class="d-block mx-auto text-center"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-4" id="border-colour">
+        <h3>Border colour</h3>
+        <p>Modify the colour of the ring around the input.</p>
+      </section>
+
+      <section id="fixed-centre" class="my-4">
+        <h3>Fixed centre</h3>
+        <p>
+          When enabled, the input will always be in the centre of the screen. When disabled, the
+          input will be in a random position on the screen each time it is shown*. This requires the
+          user to find the input.
+        </p>
+        <p>* Switch mode will always show the input in the centre of the screen.</p>
+      </section>
+
+      <section id="eyegaze-config" class="my-4">
+        <h3>Eyegaze config</h3>
+
+        <section id="dwell-time" class="my-4">
+          <h4>Dwell time</h4>
+          <p>
+            The amount of time the user must fixate on the input before it is activated. This is
+            measured in seconds.
+          </p>
+          <div class="row">
+            <div class="col-sm-12 col-md-4 text-center">
+              <img src="/adaptive-input/eyegaze-bg.png" alt="Eyegaze background" />
+            </div>
+
+            <div class="col-sm-12 col-md-8 align-self-center">
+              <p>
+                The amount of time left for the input to trigger is indicated by the background
+                changing colour, as seen in this image. <a href="#effect-colour"
+                  >The colour can be changed.</a
+                >
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="effect-colour" class="my-4">
+          <h4>Effect colour</h4>
+          <p>
+            The colour of the background effect. This is the colour that changes as the user
+            approaches the dwell time.
+          </p>
+        </section>
+      </section>
+    </section>
+  </DocLayout>
+</Layout>
+
+<style>
+  #small-input {
+    width: 6rem;
+    height: 6rem;
+  }
+  #small-input img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  #medium-input {
+    width: 10rem;
+    height: 10rem;
+  }
+  #medium-input img {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  #large-input {
+    width: 14rem;
+    height: 14rem;
+  }
+  #large-input img {
+    width: 7rem;
+    height: 7rem;
+  }
+</style>

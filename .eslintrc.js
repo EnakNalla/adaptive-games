@@ -6,6 +6,7 @@ module.exports = {
     "turbo",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:astro/recommended",
     "prettier"
   ],
   parser: "@typescript-eslint/parser",
@@ -19,6 +20,16 @@ module.exports = {
       rootDir: ["./apps/yt"]
     }
   },
+  overrides: [
+    {
+      files: ["*.astro"],
+      parser: "astro-eslint-parser",
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"]
+      }
+    }
+  ],
   rules: {
     "@next/next/no-html-link-for-pages": "off",
     "@typescript-eslint/restrict-template-expressions": "off",

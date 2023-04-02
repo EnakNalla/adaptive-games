@@ -1,0 +1,105 @@
+---
+import ThemeToggle from "../components/ThemeToggle.astro";
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+      crossorigin="anonymous"
+    ></script>
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav class="navbar bg-body-tertiary navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="/favicon.svg" alt="Logo" width="32" height="32" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-header">
+            <a href="/" class="offcanvas-title" id="offcanvasNavbarLabel">
+              <img src="/favicon.svg" alt="Logo" width="32" height="32" />
+            </a>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav flex-grow-1 pe-3 ms-lg-5">
+              <li class="nav-item">
+                <a class="nav-link" href="/yt" id="yt">YT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/adaptive-input" id="adaptive-input"
+                  >Adaptive input</a
+                >
+              </li>
+            </ul>
+            <ThemeToggle />
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container-fluid">
+      <slot />
+    </main>
+  </body>
+</html>
+
+<script>
+  if (location.pathname.includes("yt"))
+    (document.getElementById("yt") as HTMLAnchorElement).classList.add(
+      "active"
+    );
+
+  if (location.pathname.includes("adaptive-input"))
+    (
+      document.getElementById("adaptive-input") as HTMLAnchorElement
+    ).classList.add("active");
+</script>
+
+<style is:global>
+  html,
+  body,
+  main {
+    overflow: hidden;
+  }
+</style>
