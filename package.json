@@ -40,7 +40,7 @@
     "typescript": "^5.0.3"
   },
   "lint-staged": {
-    "*.{ts,tsx,md,js,mjs,cjs,json}": [
+    "*.{ts,tsx,md,js,mjs,cjs,json,astro}": [
       "prettier --write"
     ],
     "*.{ts,tsx}": [
