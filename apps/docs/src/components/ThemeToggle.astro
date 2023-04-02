@@ -27,9 +27,7 @@
 </label>
 
 <script>
-  const themeToggle = document.getElementById(
-    "themeToggle"
-  ) as HTMLInputElement;
+  const themeToggle = document.getElementById("themeToggle") as HTMLInputElement;
   const theme = (() => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       const theme = localStorage.getItem("theme")!;
@@ -50,9 +48,7 @@
 
   const handleToggleClick = () => {
     const theme =
-      document.documentElement.getAttribute("data-bs-theme") === "dark"
-        ? "light"
-        : "dark";
+      document.documentElement.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-bs-theme", theme);
     localStorage.setItem("theme", theme);
   };

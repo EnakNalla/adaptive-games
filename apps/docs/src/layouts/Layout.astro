@@ -5,7 +5,7 @@ export interface Props {
   title: string;
 }
 
-const { title } = Astro.props;
+const {title} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -55,11 +55,8 @@ const { title } = Astro.props;
             <a href="/" class="offcanvas-title" id="offcanvasNavbarLabel">
               <img src="/favicon.svg" alt="Logo" width="32" height="32" />
             </a>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+            ></button>
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav flex-grow-1 pe-3 ms-lg-5">
@@ -67,9 +64,7 @@ const { title } = Astro.props;
                 <a class="nav-link" href="/yt" id="yt">YT</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/adaptive-input" id="adaptive-input"
-                  >Adaptive input</a
-                >
+                <a class="nav-link" href="/adaptive-input" id="adaptive-input">Adaptive input</a>
               </li>
             </ul>
             <ThemeToggle />
@@ -86,14 +81,10 @@ const { title } = Astro.props;
 
 <script>
   if (location.pathname.includes("yt"))
-    (document.getElementById("yt") as HTMLAnchorElement).classList.add(
-      "active"
-    );
+    (document.getElementById("yt") as HTMLAnchorElement).classList.add("active");
 
   if (location.pathname.includes("adaptive-input"))
-    (
-      document.getElementById("adaptive-input") as HTMLAnchorElement
-    ).classList.add("active");
+    (document.getElementById("adaptive-input") as HTMLAnchorElement).classList.add("active");
 </script>
 
 <style is:global>
