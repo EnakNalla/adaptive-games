@@ -19,7 +19,7 @@ const Playlist = () => {
   ]);
 
   useEffect(() => {
-    if (config?.inputConfig.type === "switch") {
+    if (config?.inputConfig.type === "SWITCH") {
       document.addEventListener("keyup", handleKeyup);
       document.addEventListener("keydown", handleKeydown);
 
