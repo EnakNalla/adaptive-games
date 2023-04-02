@@ -11,10 +11,8 @@ import Layout from "../layouts/Layout.astro";
         <a class="nav-link ms-3 my-1" href="#user-configs">User configs</a>
         <a class="nav-link ms-3 my-1" href="#input-config">Input config</a>
         <a class="nav-link ms-3 my-1" href="#timers">Timers</a>
-        <a class="nav-link ms-3 my-1" href="#playlist-config">Playlist config</a
-        >
-        <a class="nav-link ms-3 my-1" href="#playlist-videos">Playlist videos</a
-        >
+        <a class="nav-link ms-3 my-1" href="#playlist-config">Playlist config</a>
+        <a class="nav-link ms-3 my-1" href="#playlist-videos">Playlist videos</a>
       </nav>
 
       <a class="nav-link" href="#usage">Usage</a>
@@ -23,7 +21,7 @@ import Layout from "../layouts/Layout.astro";
         <a class="nav-link ms-3 my-1" href="#video">Videos</a>
       </nav>
 
-      <a class="nav-link" href="#advanced-usage">Advances usage</a>
+      <a class="nav-link" href="#advanced-usage">Advanced usage</a>
       <nav class="nav nav-pills flex-column">
         <a class="nav-link ms-3 my-1" href="#two-switch">2 Switch usage</a>
       </nav>
@@ -36,74 +34,52 @@ import Layout from "../layouts/Layout.astro";
 
       <section id="user-configs" class="my-4">
         <h3>User Configs</h3>
-        <img
-          src="/yt/user-configs.png"
-          alt="user configs page"
-          class="img-fluid my-2 border"
-        />
+        <img src="/yt/user-configs.png" alt="user configs page" class="img-fluid my-2 border" />
 
         <div>
-          <p>
-            Manage your configurations. Create, delete or update from this
-            section.
-          </p>
+          <p>Manage your configurations. Create, delete or update from this section.</p>
 
           <p class="fw-semibold">Startup configuration</p>
           <p>
-            When you visit the site and login/are already authenticated the
-            configuration will load.
+            When you visit the site and login/are already authenticated the configuration will load.
             <br />
-            see: <a href="#advanced-usage">Advancaed usage</a> for more info.
+            see: <a href="#advanced-usage">advanced usage</a> for more info.
           </p>
         </div>
       </section>
 
       <section id="input-config" class="my-4">
         <h3>Input config</h3>
-        <img
-          src="/yt/input-config.png"
-          alt="input config tab"
-          class="img-fluid my-2 border"
-        />
+        <img src="/yt/input-config.png" alt="input config tab" class="img-fluid my-2 border" />
 
         <p>
-          This is the configuration loaded for the &quot;Adaptive Input&quot;
-          which is the name for the screen with prompts for switch/eye
-          gaze/touch input.
+          This is the configuration loaded for the &quot;Adaptive Input&quot; which is the name for
+          the screen with prompts for switch/eye gaze/touch input.
         </p>
 
         <div class="mt-2">
           <p>
-            See the <a href="/adaptive-input">Adaptive Input</a> section for more
-            details
+            See the <a href="/adaptive-input">Adaptive Input</a> section for more details
           </p>
         </div>
       </section>
 
       <section id="timers" class="my-4">
         <h3>Timers</h3>
-        <img
-          src="/yt/timers.png"
-          alt="timers tab"
-          class="img-fluid my-2 border"
-        />
+        <img src="/yt/timers.png" alt="timers tab" class="img-fluid my-2 border" />
 
         <div>
           <p>Define how long to play a video before automatic pause.</p>
           <p>
-            When using time &quot;Infinite&quot; input starts and stops the
-            video. Otherwise if the video is playing the input does nothing.
+            When using time &quot;Infinite&quot; input starts and stops the video. Otherwise if the
+            video is playing the input does nothing.
           </p>
         </div>
       </section>
 
       <section id="playlist-config" class="my-4">
         <h3>Playlist config</h3>
-        <img
-          src="/yt/playlist-config.png"
-          alt="playlists tab"
-          class="img-fluid my-2 border"
-        />
+        <img src="/yt/playlist-config.png" alt="playlists tab" class="img-fluid my-2 border" />
 
         <div>
           <p>
@@ -115,17 +91,13 @@ import Layout from "../layouts/Layout.astro";
 
       <secion id="playlist-videos" class="my-4">
         <h3>Playlist videos</h3>
-        <img
-          src="/yt/video-timers.png"
-          alt="video timers page"
-          class="img-fluid my-2 border"
-        />
+        <img src="/yt/video-timers.png" alt="video timers page" class="img-fluid my-2 border" />
 
         <div>
           <p>This feature allows you to set custom stop times for a video.</p>
           <p>
-            This is useful for things like books. You can see an example of this
-            in the example playlist.
+            This is useful for things like books. You can see an example of this in the example
+            playlist.
           </p>
         </div>
       </secion>
@@ -136,30 +108,20 @@ import Layout from "../layouts/Layout.astro";
 
       <section id="playlists" class="my-4">
         <h3>Playlists</h3>
-        <img
-          src="/yt/playlist-page.png"
-          alt="playlists page"
-          class="img-fluid my-2 border"
-        />
+        <img src="/yt/playlist-page.png" alt="playlists page" class="img-fluid my-2 border" />
 
         <div>
           <p>
-            If 2 switch mode is enabled (see <a href="#advanced-usage"
-              >Advanced usage</a
-            >) pressing space will select the next video, if speech synthesis is
-            enabled the videos title will be spoken. Pressing enter will select
-            the video.
+            If 2 switch mode is enabled (see <a href="#advanced-usage">Advanced usage</a>) pressing
+            space will select the next video, if speech synthesis is enabled the videos title will
+            be spoken. Pressing enter will select the video.
           </p>
         </div>
       </section>
 
       <section id="video" class="my-4">
         <h3>Videos</h3>
-        <img
-          src="/yt/video-page.png"
-          alt="playlists page"
-          class="img-fluid my-2 border"
-        />
+        <img src="/yt/video-page.png" alt="playlists page" class="img-fluid my-2 border" />
       </section>
     </section>
 
@@ -182,18 +144,16 @@ import Layout from "../layouts/Layout.astro";
           </p>
 
           <p>
-            Now you can press the spacebar switch to cycle through the videos in
-            the playlist (If speach synthesis is enabled, it will read the title
-            of the video).
+            Now you can press the spacebar switch to cycle through the videos in the playlist (If
+            speach synthesis is enabled, it will read the title of the video).
           </p>
           <p>
-            Pressing the enter switch will select the video and launch straight
-            to the{" "}
+            Pressing the enter switch will select the video and launch straight to the{" "}
             <a href="#input-prompt">input prompt</a>.
           </p>
           <p>
-            Pressing the spacebar will go back to the playlist where you can
-            again cycle through the videos.
+            Pressing the spacebar will go back to the playlist where you can again cycle through the
+            videos.
           </p>
         </div>
       </section>
