@@ -1,15 +1,8 @@
-$primary: #7e5af0;
-$primary-text: #e5defc;
-$primary-text-emphasis: #261b48;
-$primary-bg-subtle: #4c3690;
-$primary-border-subtle: #6548c0;
+@import "@ag/ui/src/styles.scss";
 
-$primary-dark: #7e5af0;
-$primary-text-dark: #e5defc;
-$primary-text-emphasis-dark: #261b48;
-$primary-bg-subtle-dark: #4c3690;
-$primary-border-subtle-dark: #6548c0;
-$link-color-dark: $primary;
+html, body, .__next {
+  height: 100%;
+}
 
 #loading {
   height: 90vh;
@@ -33,4 +26,3 @@ $link-color-dark: $primary;
   z-index: 50;
 }
 
-@import "bootstrap/scss/bootstrap";
