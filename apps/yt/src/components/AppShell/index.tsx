@@ -26,7 +26,7 @@ const AppShell = ({children}: {children: ReactNode}) => {
     }
   }, [status, configId]);
 
-  if (status === "loading" || !configId) return <Loading />;
+  if (status === "loading" || (!configId && status === "authenticated")) return <Loading />;
 
   if (status !== "authenticated") return <LoginPage />;
 
