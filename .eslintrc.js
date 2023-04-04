@@ -13,7 +13,12 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
     tsconfigRootDir: __dirname,
-    project: ["./tsconfig.json", "./packages/*/tsconfig.json", "./apps/*/tsconfig.json"]
+    project: [
+      "./tsconfig.json",
+      "./packages/*/tsconfig.json",
+      "./apps/*/tsconfig.json",
+      "./apps/music/tsconfig.eslint.json"
+    ]
   },
   settings: {
     next: {
