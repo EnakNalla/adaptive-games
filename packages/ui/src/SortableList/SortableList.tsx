@@ -30,9 +30,21 @@ export interface SortableListProps {
   items: SortableItem[];
   setItems: (items: SortableItem[]) => void;
   className?: string;
+  useId?: boolean;
+  onClick?: (item: SortableItem) => void | Promise<void>;
+  active?: string;
+  useDataIndex?: boolean;
 }
 
-export const SortableList = ({items, setItems, className}: SortableListProps) => {
+export const SortableList = ({
+  items,
+  setItems,
+  className,
+  useId,
+  onClick,
+  active,
+  useDataIndex
+}: SortableListProps) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor));
 
@@ -62,8 +74,17 @@ export const SortableList = ({items, setItems, className}: SortableListProps) =>
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         <ListGroup className={className}>
-          {items.map(item => (
-            <BaseItem key={item.id} activeId={activeId} item={item} onDelete={handleDelete} />
+          {items.map((item, index) => (
+            <BaseItem
+              key={item.id}
+              activeId={activeId}
+              item={item}
+              onDelete={handleDelete}
+              useId={useId}
+              active={active}
+              onClick={onClick}
+              dataIndex={useDataIndex ? index : undefined}
+            />
           ))}
         </ListGroup>
       </SortableContext>
@@ -73,6 +94,7 @@ export const SortableList = ({items, setItems, className}: SortableListProps) =>
           activeId={null}
           item={activeId ? items.find(i => i.id === activeId) : null}
           isOverlay
+          useId={useId}
         />
       </DragOverlay>
     </DndContext>
@@ -84,9 +106,22 @@ interface BaseItemProps {
   item?: SortableItem | null;
   onDelete?: (id: string) => void;
   isOverlay?: boolean;
+  useId?: boolean;
+  active?: string;
+  onClick?: (item: SortableItem) => void;
+  dataIndex?: number;
 }
 
-export const BaseItem = ({item, activeId, onDelete, isOverlay}: BaseItemProps) => {
+export const BaseItem = ({
+  item,
+  activeId,
+  onDelete,
+  isOverlay,
+  useId,
+  active,
+  onClick,
+  dataIndex
+}: BaseItemProps) => {
   const {transition, transform, setActivatorNodeRef, setNodeRef, attributes, listeners} =
     useSortable({
       id: item?.id ?? "",
@@ -106,17 +141,31 @@ export const BaseItem = ({item, activeId, onDelete, isOverlay}: BaseItemProps) =
 
   return (
     <ListGroup.Item
-      className={`d-flex justify-content-between p-2 ${isOverlay ? "shadow rounded" : ""}`}
+      onClick={() => onClick?.(item)}
+      as="div"
+      className={`d-flex justify-content-between p-2 ${
+        isOverlay ? "shadow rounded" : ""
+      } focus-ring`}
       style={style}
       ref={isOverlay ? undefined : setNodeRef}
+      action={typeof onClick !== "undefined"}
+      active={typeof active !== "undefined" && active === item.id}
+      data-index={dataIndex}
+      role={typeof onClick !== "undefined" ? "button" : undefined}
+      tabIndex={typeof onClick !== "undefined" ? 0 : undefined}
     >
-      <p>{item.value}</p>
+      <p>{useId ? item.id : item.value}</p>
 
       <div>
-        <Button variant="outline-primary" aria-label="Move" className="me-2" {...dragProps}>
+        <Button variant="secondary" aria-label="Move" className="me-2 z-3" {...dragProps}>
           <GripHorizontal aria-hidden="true" />
         </Button>
-        <Button variant="outline-danger" onClick={() => onDelete?.(item.id)} aria-label="Delete">
+        <Button
+          variant="danger"
+          onClick={() => onDelete?.(item.id)}
+          aria-label="Delete"
+          className="z-3"
+        >
           <Trash3Fill aria-hidden="true" />
         </Button>
       </div>
