@@ -11,4 +11,8 @@ $primary-bg-subtle-dark: #4c3690;
 $primary-border-subtle-dark: #6548c0;
 $link-color-dark: $primary;
 
+#loading {
+  height: 90vh;
+}
+
 @import "bootstrap/scss/bootstrap";
