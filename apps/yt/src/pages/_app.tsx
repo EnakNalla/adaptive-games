@@ -7,7 +7,7 @@ import Link from "next/link";
 import {Suspense, type ReactNode} from "react";
 import {Alert, Button, Container} from "react-bootstrap";
 import {ErrorBoundary} from "react-error-boundary";
-import {Loading} from "~/components/Loading";
+import {Loading} from "@ag/ui";
 import AppShell from "../components/AppShell";
 import "../styles/index.scss";
 import {api} from "../utils/api";
