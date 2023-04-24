@@ -13,16 +13,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
     tsconfigRootDir: __dirname,
-    project: [
-      "./tsconfig.json",
-      "./packages/*/tsconfig.json",
-      "./apps/*/tsconfig.json",
-      "./apps/music/tsconfig.eslint.json"
-    ]
+    project: ["./tsconfig.json", "./packages/*/tsconfig.json", "./apps/*/tsconfig.json"]
   },
   settings: {
     next: {
-      rootDir: ["./apps/yt"]
+      rootDir: ["./apps/yt", "./apps/music"]
     }
   },
   overrides: [
