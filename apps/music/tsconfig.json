@@ -1,4 +1,10 @@
 {
-  "files": [],
-  "references": [{"path": "./tsconfig.node.json"}, {"path": "./tsconfig.web.json"}]
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
