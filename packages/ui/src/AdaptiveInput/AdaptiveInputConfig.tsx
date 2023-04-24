@@ -1,21 +1,21 @@
-import {type InputConfig} from "@ag/api";
+import {type InputConfig} from "@ag/db";
 import {Checkbox, FormBase, Input, Select} from "../Form";
 import {Button} from "react-bootstrap";
 
-interface Props {
+export interface AdaptiveInputConfigProps {
   inputConfig: InputConfig;
   onSubmit: (data: InputConfig) => void | Promise<void>;
 }
 
-export const AdaptiveInputConfig = ({inputConfig, onSubmit}: Props) => {
+export const AdaptiveInputConfig = ({inputConfig, onSubmit}: AdaptiveInputConfigProps) => {
   return (
     <FormBase defaultValues={inputConfig} onSubmit={onSubmit} className="mt-3">
       <Select
         options={[
-          {value: "eyeGaze", label: "Eye gaze"},
-          {value: "switch", label: "Switch"},
-          {value: "mouse", label: "Mouse"},
-          {value: "touch", label: "Touch"}
+          {value: "EYEGAZE", label: "Eye gaze"},
+          {value: "MOUSE", label: "Mouse"},
+          {value: "TOUCH", label: "Touch"},
+          {value: "SWITCH", label: "Switch"}
         ]}
         name="type"
         label="Input type"
