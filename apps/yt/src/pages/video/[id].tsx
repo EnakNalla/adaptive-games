@@ -154,6 +154,7 @@ const Player = () => {
   if (!video) throw new Error("Video not found");
 
   const onOverlayClick = () => {
+    if (timer.playtime !== 0 || videoTimer) return;
     if (config?.inputConfig.type === "TOUCH" || config?.inputConfig.type === "MOUSE") {
       if (isPlaying) pauseVideo();
     }
