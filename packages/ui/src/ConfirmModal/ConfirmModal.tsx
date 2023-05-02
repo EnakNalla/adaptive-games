@@ -9,15 +9,17 @@ export interface ConfirmModalProps {
   btnProps?: ButtonProps;
 }
 
+const btnPropDefaults: ButtonProps = {
+  variant: "danger",
+  children: <Trash3Fill aria-hidden="true" />,
+  "aria-label": "Delete"
+};
+
 export const ConfirmModal = ({
   title = "Are you sure?",
   message = "This cannot be undone.",
   onConfirm,
-  btnProps = {
-    variant: "danger",
-    children: <Trash3Fill aria-hidden="true" />,
-    "aria-label": "Delete"
-  }
+  btnProps
 }: ConfirmModalProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -33,7 +35,7 @@ export const ConfirmModal = ({
 
   return (
     <>
-      <Button {...btnProps} onClick={() => setIsOpen(true)} />
+      <Button {...{...btnPropDefaults, ...btnProps}} onClick={() => setIsOpen(true)} />
 
       <Modal show={isOpen} onHide={handleClose}>
         <Modal.Header closeButton>
