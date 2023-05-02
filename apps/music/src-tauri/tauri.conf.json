@@ -32,8 +32,8 @@
         "depends": []
       },
       "externalBin": [],
-      "icon": ["icons/icon.png", "icons/icon.svg"],
-      "identifier": "github.com.EnakNalla.AdaptiveGames-Music",
+      "icon": ["icons/icon.png"],
+      "identifier": "com.github.EnakNalla.AdaptiveGames.Music",
       "longDescription": "Music app with visualiser controlled by Switch/Eye gaze/Touch",
       "macOS": {
         "entitlements": null,

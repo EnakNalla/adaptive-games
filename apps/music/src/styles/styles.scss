@@ -1,1 +1,28 @@
 @import "@ag/ui/src/styles.scss";
+
+.list-title {
+  top: 1rem;
+  width: max-content;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.list-title-sm {
+  top: 0.8rem !important;
+}
+
+.misshit-display {
+  height: 80vh;
+}
+
+.configs-inner {
+  height: 56vh;
+}
+
+.configs {
+  max-height: 56vh;
+}
+
+.playlist {
+  height: 84vh;
+}
