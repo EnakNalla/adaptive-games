@@ -61,6 +61,9 @@ const {title} = Astro.props;
               <li class="nav-item">
                 <a class="nav-link" href="/adaptive-input" id="adaptive-input">Adaptive input</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/music" id="music">Music</a>
+              </li>
             </ul>
             <ThemeToggle />
           </div>
@@ -80,6 +83,9 @@ const {title} = Astro.props;
 
   if (location.pathname.includes("adaptive-input"))
     (document.getElementById("adaptive-input") as HTMLAnchorElement).classList.add("active");
+
+  if (location.pathname.includes("music"))
+    (document.getElementById("music") as HTMLAnchorElement).classList.add("active");
 </script>
 
 <style is:global>

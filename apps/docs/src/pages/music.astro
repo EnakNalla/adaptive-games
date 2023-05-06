@@ -1,0 +1,162 @@
+---
+import Icon from "../components/Icon.astro";
+import DocLayout from "../layouts/DocLayout.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Music docs">
+  <DocLayout>
+    <nav class="nav nav-pills flex-column" slot="sidebar">
+      <a href="#config" class="nav-link">Configuration</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link ms-3 my-1" href="#playlist">Playlists</a>
+        <a class="nav-link ms-3 my-1" href="#timers">Timers</a>
+        <a class="nav-link ms-3 my-1" href="#visualiser">Visualiser</a>
+        <a class="nav-link ms-3 my-1" href="#quick-settings">Quick settings</a>
+      </nav>
+
+      <a href="#usage" class="nav-link">Usage</a>
+      <nav class="nav nav-pills flex-column">
+        <a href="#mishits" class="nav-link ms-3 my-1">Miss hit tracking</a>
+        <a class="nav-link ms-3 my-1" href="#two-switch">2 Switch mode</a>
+      </nav>
+    </nav>
+
+    <h1 class="text-center">Music</h1>
+
+    <section id="config" class="my-4">
+      <h2 class="text-center">Configuration</h2>
+
+      <div>
+        <p>A configuration represents a saved state for:</p>
+        <ul>
+          <li>A <a href="#playlist">playlist</a></li>
+          <li>An <a href="/adaptive-input">adaptive input config</a></li>
+          <li>
+            A <a href="#visualiser">visualiser config<a></a></a>
+          </li>
+          <li>A set of <a href="#timers">timers</a></li>
+        </ul>
+
+        <p>
+          Configurations are automatically saved, insluding the currently selected configuration and
+          song. This allows starting from where you left off when opening the app.
+        </p>
+      </div>
+
+      <section id="playlist" class="my-4">
+        <h3>Playlists</h3>
+
+        <img src="/music/playlist.png" class="img-fluid my-2 border" alt="Playlist" />
+
+        <div>
+          <p>New playlist - overwrites current playlist with selection.</p>
+          <p>Append to playlist - appends selection to current playlist.</p>
+          <p>
+            <span class="font-semibold">Shuffle:</span> When a song is finished, choose a random song
+            next (defaults to next in list).
+          </p>
+          <p class="mb-2">
+            <span class="font-semibold">Handle:</span>
+
+            <p>
+              <div class="btn btn-secondary" aria-label="Move">
+                <Icon icon="grip-horizontal" />
+              </div>
+              Drag to reaorder songs.
+            </p>
+
+            <p>
+              <div class="btn btn-danger" aria-label="Delete">
+                <Icon icon="trash3-fill" />
+              </div>
+
+              Click to remove.
+            </p>
+          </p>
+
+          <p>
+            2 switch mode: cycle through songs with space, start with enter. see <a
+              href="#2-switch-mode">2 switch mode</a
+            > for more info.
+          </p>
+        </div>
+      </section>
+
+      <section id="timers" class="my-4">
+        <h3>Timers</h3>
+
+        <img src="/music/timers.png" alt="Timers tab" class="img-fluid my-2" />
+
+        <div>
+          <p>Define how long to play music before automatic pause.</p>
+          <p>
+            When using time &quot;Infinite&quot; input starts and stops the music. Otherwise if the
+            music is playing the input does nothing and susequent presses are logged as <a
+              href="#misshits">miss hits</a
+            >
+          </p>
+        </div>
+      </section>
+
+      <section id="visualiser" class="my-4">
+        <h3>Visualiser</h3>
+
+        <img src="/music/visualiser-settings.png" alt="Timers tab" class="img-fluid my-2" />
+
+        <div>
+          <p><span class="fw-semibold">Type:</span> Change the visualiser animation</p>
+          <p><span class="fw-semibold">Stroke:</span> how thick the lines are.</p>
+          <p>
+            <span class="fw-semibold">Colours:</span> Set the various colours of the animations.
+          </p>
+        </div>
+
+        <section id="quick-settings" class="my-4">
+          <h3>Quick settings</h3>
+
+          <img src="/music/quick-settings.png" alt="Quick settings" class="img-fluid my-2" />
+
+          <div>
+            <p>
+              Set the visualiser animation and change the timer without going into the settings
+              menu.
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <section id="usage" class="my-4">
+        <h2 class="text-center">Usage</h2>
+
+        <section id="mishits" class="my-4">
+          <h3>Miss hits</h3>
+
+          <img src="/music/misshits.png" alt="Miss hits" class="img-fluid my-2" />
+
+          <div>
+            <p>
+              Using switch mode, when music is playing pressing the enter switch will log a miss hit
+              for that play session.
+            </p>
+
+            <p>
+              You can save this information to a file. This can be useful for trying to track
+              enjoyement for exmaple. Are there more/less miss hits for a particular song?
+            </p>
+          </div>
+        </section>
+
+        <section id="two-switch" class="my-4">
+          <h3>2 switch mode</h3>
+
+          <div>
+            <p>Connect one switch as Enter, the other as Space.</p>
+            <p>The switch mapped as Space will allow the user to cycle through songs.</p>
+            <p>The switch mapped as Enter will allow the user to play the music</p>
+          </div>
+        </section>
+      </section>
+    </section>
+  </DocLayout>
+</Layout>
