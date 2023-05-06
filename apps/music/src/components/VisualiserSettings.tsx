@@ -35,7 +35,7 @@ export const VisualiserSettingsTab = ({
 
   return (
     <FormBase defaultValues={visualiserSettings} onSubmit={handleSubmit} className="mt-4">
-      <Select name="type" label="Type" options={visualiserTypeOptions} />
+      <Select name="type" label="Type" options={visualiserTypeOptions} className="mb-4" />
       <Select name="stroke" label="Stroke" options={strokeOptions} />
 
       <h3 className="text-center my-4">Colours</h3>

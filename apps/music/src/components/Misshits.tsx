@@ -15,7 +15,7 @@ const saveMisshitFile = async (configId: string, missHits: MissHit) => {
     for (let i = 0; i < v.length; i++) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we know it exists
       const {count, range} = v[i]!;
-      content += `\t ${i}: ${count} - ${range}\n`;
+      content += `\t ${i}: count: ${count} - range: ${range}\n`;
     }
   }
 

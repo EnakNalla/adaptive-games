@@ -18,10 +18,14 @@
         "assetScope": ["**"]
       },
       "dialog": {
-        "open": true
+        "open": true,
+        "save": true
       },
       "path": {
         "all": true
+      },
+      "fs": {
+        "writeFile": true
       }
     },
     "bundle": {
