@@ -2,6 +2,7 @@ import {FormBase, Input, Select, type SelectOption} from "@ag/ui";
 import {visualiserTypeOptions, type VisualiserSettings} from "~/store";
 import {Stack, Button} from "react-bootstrap";
 import {DEFAULT_VISUALISER_SETTINGS} from "~/store/defaults";
+import {useStore} from "~/store";
 
 const strokeOptions: SelectOption[] = [
   {value: 2, label: "2"},
@@ -26,11 +27,12 @@ export const VisualiserSettingsTab = ({
   setVisualiserSettings
 }: VisualiserSettingsProps) => {
   const handleReset = () => setVisualiserSettings(DEFAULT_VISUALISER_SETTINGS);
+  const addNotification = useStore(state => state.addNotification);
 
   const handleSubmit = (values: VisualiserSettings) => {
     setVisualiserSettings(values);
 
-    // addNotification({title: "Success", message: "Settings saved", variant: "success"});
+    addNotification({title: "Success", body: "Visualiser Settings saved", variant: "success"});
   };
 
   return (

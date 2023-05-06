@@ -6,6 +6,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
 import {Loading} from "@ag/ui";
+import {Notifications} from "./Notifications";
 
 const ThemeToggle = dynamic(() => import("@ag/ui").then(x => x.ThemeToggle), {ssr: false});
 
@@ -18,6 +19,8 @@ export const AppShell = ({children}: {children: ReactNode}) => {
     <>
       <NavBar />
       <main className="mx-4">{children}</main>
+
+      <Notifications />
     </>
   );
 };

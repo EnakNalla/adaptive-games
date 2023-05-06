@@ -11,7 +11,7 @@ interface TimerTableProps {
 export const TimerTable = ({timers, setTimers, setTimer}: TimerTableProps) => {
   const handleDelete = (timer: Timer) => {
     if (timer.isDefault) {
-      // TODO: Show error
+      throw new Error("Cannot delete default timer");
     } else {
       setTimers(timers.filter(x => x.name !== timer.name));
     }
