@@ -6,9 +6,9 @@ import Layout from "../layouts/Layout.astro";
   <h1 class="text-center mt-2">Adaptive Games Docs</h1>
 
   <div class="container pb-5 overflow-y-auto" id="content">
-    <div class="mt-5 row row-cols-1 row-cols-md-2 g-4">
+    <div class="mt-5 row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
       <div class="col">
-        <div class="card" style="width: 18rem;">
+        <div class="card">
           <img src="/adaptive-input/switch-md.png" class="card-img-top" alt="switch input" />
           <div class="card-body">
             <h5 class="card-title">Adaptive Input</h5>
@@ -19,7 +19,7 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       <div class="col">
-        <div class="card" style="width: 18rem;">
+        <div class="card">
           <img src="/yt/video-page.png" class="card-img-top" alt="switch input" />
           <div class="card-body">
             <h5 class="card-title">Adaptive Games YT</h5>
@@ -30,8 +30,8 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="/music/video-page.png" class="card-img-top" alt="switch input" />
+        <div class="card">
+          <img src="/music/main.png" class="card-img-top" alt="switch input" />
           <div class="card-body">
             <h5 class="card-title">Music</h5>
             <p class="card-text">Usage documenation for the Music app.</p>
@@ -46,5 +46,14 @@ import Layout from "../layouts/Layout.astro";
 <style>
   #content {
     height: 90vh;
+  }
+
+  .card {
+    width: 18rem;
+  }
+
+  .card img {
+    height: 15rem;
+    object-fit: cover;
   }
 </style>
