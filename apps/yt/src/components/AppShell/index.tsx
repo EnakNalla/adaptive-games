@@ -6,7 +6,7 @@ import {useEffect, type ReactNode} from "react";
 import {Alert, Button, Container, Nav, Navbar} from "react-bootstrap";
 import {api} from "~/utils/api";
 import {useAppStore} from "~/utils/useAppStore";
-import {Loading} from "../Loading";
+import {Loading} from "@ag/ui";
 import NavBar from "./NavBar";
 
 const ThemeToggle = dynamic(() => import("./ThemeToggle"), {ssr: false});
