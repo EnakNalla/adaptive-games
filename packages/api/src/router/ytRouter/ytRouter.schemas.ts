@@ -21,7 +21,7 @@ export const inputConfigSchema = z.object({
   effectColour: z.string(),
   borderColour: z.string(),
   size: z.enum(["SM", "MD", "LG"]),
-  type: z.enum(["SWITCH", "TOUCH", "SWITCH", "EYEGAZE"]),
+  type: z.enum(["SWITCH", "TOUCH", "MOUSE", "EYEGAZE"]),
   fixedCentre: z.boolean()
 });
 
