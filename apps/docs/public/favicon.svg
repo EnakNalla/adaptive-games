@@ -1,45 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   width="190.58423mm"
-   height="105.75685mm"
-   viewBox="0 0 190.58423 105.75685"
-   version="1.1"
-   id="svg927"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview929"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     showgrid="false" />
-  <defs
-     id="defs924" />
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-9.7078852,-41.392849)">
-    <text
-       xml:space="preserve"
-       style="font-style:oblique;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:132.717px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold Oblique';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#7f5af0;fill-opacity:1;stroke:none;stroke-width:2.11668;stroke-dasharray:none;stroke-opacity:1"
-       x="6.8449121"
-       y="137.32164"
-       id="text11224"
-       transform="scale(0.95038568,1.0522044)"><tspan
-         sodipodi:role="line"
-         id="tspan11222"
-         style="font-style:oblique;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:132.717px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold Oblique';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#7f5af0;fill-opacity:1;stroke:none;stroke-width:2.11668;stroke-dasharray:none;stroke-opacity:1"
-         x="6.8449121"
-         y="137.32164">AG</tspan></text>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.31 33">
+  <text transform="translate(.5 23.82) scale(.72 1)" fill="#7e5af0" font-family="Arial-Black, &apos;Arial Black&apos;" font-size="27.48" font-weight="800" stroke="#221f20" stroke-miterlimit="10"><tspan x="0" y="0" letter-spacing="-.02em">A</tspan><tspan x="20.88" y="0" letter-spacing="0em">G</tspan></text>
 </svg>
