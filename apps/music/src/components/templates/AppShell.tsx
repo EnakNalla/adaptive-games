@@ -18,7 +18,7 @@ export const AppShell = ({children}: {children: ReactNode}) => {
   return (
     <>
       <NavBar />
-      <main className="mx-4">{children}</main>
+      <Container as="main">{children}</Container>
 
       <Notifications />
     </>
